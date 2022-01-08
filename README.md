@@ -8,6 +8,8 @@ pip3 install remarkov
 
 ## Example
 
+Scrape the Wikipedia page for "Computer Programming" and generate a new text from it:
+
 ``` bash
 ./tools/scrape-wiki.py --pages Computer_programming | remarkov
 ```

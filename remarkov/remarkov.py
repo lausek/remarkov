@@ -43,8 +43,25 @@ class ReMarkov:
             self._trigger_before_insert(next(token_stream)) for _ in range(self.order)
         ]
 
-    def _get_random_start_state(self) -> List[Token]:
-        return list(random.choice(self.transitions.start_states))
+    def _get_random_start_state(self) -> Tuple[Tuple[Token], List[Token]]:
+        """
+        This returns an immutable tuple state for transition selection as first value and
+        a mutable variant as second value.
+        """
+        for _ in range(100):
+            # unfortunately, we cannot trust this start state to have a successor token,
+            # because the chain could be exhausted if corresponding source text ended.
+            key = random.choice(self.transitions.start_states)
+
+            # make sure that the state has successor tokens
+            if key in self.transitions:
+                break
+
+        else:
+            # if we haven't managed to find a start state -> give up.
+            raise Exception("Couldn't select a valid start state.")
+
+        return key, list(key)
 
     def _trigger_before_insert(self, token: str) -> str:
         if self.before_insert:
@@ -69,7 +86,7 @@ class ReMarkov:
             # if we removed a sentence termination token in the last iteration
             # we now have a valid start state.
             if last_removed_token in PUNCT_TERMINATION:
-                self.transitions.declare_start(state)
+                self.transitions.declare_start(key)
 
             # update current state
             state.append(token)
@@ -77,16 +94,17 @@ class ReMarkov:
             last_removed_token = state.pop(0)
 
     def generate_text(self, word_amount: int) -> MarkovChainWalk:
-        state = self._get_random_start_state()
+        _, state = self._get_random_start_state()
 
+        # copy state tokens into output
         yield from state
 
         for _ in range(word_amount):
             key: Tuple[Token] = tuple(state)
 
             if key not in self.transitions:
-                state = self._get_random_start_state()
-                key: Tuple[Token] = tuple(state)
+                key, state = self._get_random_start_state()
+
                 yield from state
 
             token = random.choice(self.transitions[key])
