@@ -1,4 +1,4 @@
-# MarkovAuthor
+# ReMarkov
 
 Generate text from text using Markov chains.
 
