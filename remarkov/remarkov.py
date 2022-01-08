@@ -1,4 +1,4 @@
-from typing import Callable, List, Optional
+from typing import Callable, Dict, List, Optional
 
 from remarkov.types import State, Token, Tokenizer, TokenStream
 from remarkov.tokenizer import default_tokenizer
@@ -22,7 +22,15 @@ class ReMarkov:
         self.transitions: Dict[State, List[Token]] = {}
 
     def _create_initial_state(self, token_stream: TokenStream) -> List[Token]:
-        return [next(token_stream) for _ in range(self.order)]
+        return [
+            self._trigger_before_insert(next(token_stream)) for _ in range(self.order)
+        ]
+
+    def _trigger_before_insert(self, token: str) -> str:
+        if self.before_insert:
+            return self.before_insert(token)
+
+        return token
 
     def add_text(self, text: str, tokenizer: Optional[Tokenizer] = None):
         if tokenizer is None:
@@ -38,6 +46,7 @@ class ReMarkov:
             if key not in self.transitions:
                 self.transitions[key] = []
 
+            token = self._trigger_before_insert(token)
             self.transitions[key].append(token)
 
             # update current state
