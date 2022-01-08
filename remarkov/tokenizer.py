@@ -5,6 +5,8 @@ PUNCT = [*PUNCT_TERMINATION, ",", "[", "]", "(", ")", ":"]
 
 
 def default_tokenizer(text: str) -> TokenStream:
+    text = text.replace("\n", " ").replace("\r", " ")
+
     for punct in PUNCT:
         text = text.replace(punct, f" {punct} ")
 

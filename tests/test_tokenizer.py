@@ -36,3 +36,8 @@ def test_default_tokenizer_brackets():
 def test_default_tokenizer_stripping_spaces():
     token_stream = default_tokenizer("  Way     too much     space   here  ")
     assert ["Way", "too", "much", "space", "here"] == list(token_stream)
+
+
+def test_default_tokenizer_remove_newline():
+    token_stream = default_tokenizer("A\nB\n\nC\n\r\nD")
+    assert ["A", "B", "C", "D"] == list(token_stream)
