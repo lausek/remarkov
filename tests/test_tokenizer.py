@@ -11,6 +11,11 @@ def test_default_tokenizer_sentence():
     assert ["I", "have", "a", "dream", "."] == list(token_stream)
 
 
+def test_default_tokenizer_colon():
+    token_stream = default_tokenizer("Say:Hello")
+    assert ["Say", ":", "Hello"] == list(token_stream)
+
+
 def test_default_tokenizer_interpunction():
     token_stream = default_tokenizer("What??No way!Anyways, well")
     assert ["What", "?", "?", "No", "way", "!", "Anyways", ",", "well"] == list(

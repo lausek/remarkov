@@ -17,6 +17,9 @@ def build_argument_parser():
     parser.add_argument(
         "--order", type=int, default=1, help="Changes the order of the Markov chain."
     )
+    parser.add_argument(
+        "--words", type=int, default=32, help="Amount of words to generate."
+    )
 
     return parser
 
@@ -41,3 +44,5 @@ def main():
             add_text_from_file(remarkov, file_name)
     else:
         add_stdin_text(remarkov)
+
+    print(" ".join(remarkov.generate_text(args.words)))
