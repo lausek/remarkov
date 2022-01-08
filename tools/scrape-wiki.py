@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 """
 A tool for scraping Wikipedia posts. This prints the extracted text to stdout.
 """
@@ -111,11 +113,17 @@ def build_argument_parser():
         default="en",
         help="Language identifier: en, de, ru, etc.",
     )
+    parser.add_argument(
+        "--tee",
+        action="store_true",
+        default=False,
+        help="Sends the scraped text to stdout and stderr.",
+    )
 
     return parser
 
 
-def scrape_queue(initial_pages: list, limit: int, language: str):
+def scrape_queue(initial_pages: list, limit: int, language: str, tee: bool):
     import random
     import time
 
@@ -139,6 +147,9 @@ def scrape_queue(initial_pages: list, limit: int, language: str):
 
         print(page.text)
 
+        if tee:
+            info(page.text)
+
         # push some mentioned pages into the scrape queue
         page_name_scrape_queue.extend(page.related_pages[:4])
         scraped_pages += 1
@@ -153,7 +164,9 @@ def main():
     args = parser.parse_args()
 
     page_name_scrape_queue = [*args.pages.split(",")]
-    scrape_queue(page_name_scrape_queue, limit=args.limit, language=args.language)
+    scrape_queue(
+        page_name_scrape_queue, limit=args.limit, language=args.language, tee=args.tee
+    )
 
 
 if __name__ == "__main__":

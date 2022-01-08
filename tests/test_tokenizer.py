@@ -33,6 +33,11 @@ def test_default_tokenizer_brackets():
     assert ["Insert", "[", "Footnote", "here", "]"] == list(token_stream)
 
 
+def test_default_tokenizer_quotes():
+    token_stream = default_tokenizer('"Avoid this now"')
+    assert ['"', "Avoid", "this", "now", '"'] == list(token_stream)
+
+
 def test_default_tokenizer_stripping_spaces():
     token_stream = default_tokenizer("  Way     too much     space   here  ")
     assert ["Way", "too", "much", "space", "here"] == list(token_stream)

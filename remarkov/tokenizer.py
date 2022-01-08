@@ -1,7 +1,7 @@
 from remarkov.types import TokenStream
 
 PUNCT_TERMINATION = [".", "?", "!"]
-PUNCT = [*PUNCT_TERMINATION, ",", "[", "]", "(", ")", ":"]
+PUNCT = [*PUNCT_TERMINATION, ",", "[", "]", "(", ")", ":", '"']
 
 
 def default_tokenizer(text: str) -> TokenStream:
