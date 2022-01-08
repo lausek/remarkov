@@ -1,3 +1,7 @@
+"""
+A tool for scraping Wikipedia posts. This prints the extracted text to stdout.
+"""
+
 from collections import namedtuple
 import sys
 
