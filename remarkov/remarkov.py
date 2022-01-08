@@ -38,10 +38,19 @@ class ReMarkov:
 
         self.transitions = Transitions()
 
+        assert 1 <= self.order, "Order must be greater than 1."
+
     def _create_initial_state(self, token_stream: TokenStream) -> List[Token]:
-        return [
-            self._trigger_before_insert(next(token_stream)) for _ in range(self.order)
-        ]
+        try:
+            return [
+                self._trigger_before_insert(next(token_stream))
+                for _ in range(self.order)
+            ]
+        except StopIteration:
+            raise Exception(
+                "Creating an initial chain state exhausted the token stream. "
+                "Choose a lower chain order or provide more input text."
+            )
 
     def _get_random_start_state(self) -> Tuple[Tuple[Token], List[Token]]:
         """

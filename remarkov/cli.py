@@ -41,7 +41,7 @@ def add_stdin_text(remarkov: ReMarkov):
     remarkov.add_text(sys.stdin.read())
 
 
-def main():
+def run_generation():
     parser = build_argument_parser()
     args = parser.parse_args()
 
@@ -57,3 +57,10 @@ def main():
         add_stdin_text(remarkov)
 
     print(" ".join(remarkov.generate_text(args.words)))
+
+
+def main():
+    try:
+        run_generation()
+    except Exception as e:
+        print(f"ERROR: {e}")
