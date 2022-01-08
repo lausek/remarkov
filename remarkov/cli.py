@@ -22,6 +22,12 @@ def build_argument_parser():
     parser.add_argument(
         "--words", type=int, default=32, help="Amount of words to generate."
     )
+    parser.add_argument(
+        "--original-caps",
+        action="store_true",
+        default=False,
+        help="Keep capitalization of the source text.",
+    )
 
     return parser
 
@@ -39,7 +45,10 @@ def main():
     parser = build_argument_parser()
     args = parser.parse_args()
 
-    remarkov = ReMarkov(order=args.order)
+    if args.original_caps:
+        remarkov = ReMarkov(order=args.order, before_insert=None)
+    else:
+        remarkov = ReMarkov(order=args.order)
 
     if args.files:
         for file_name in args.files:
