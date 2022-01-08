@@ -1,10 +1,14 @@
 from collections import namedtuple
 import sys
 
-PageLoadResult = namedtuple("PageLoadResult", [
-    "text",
-    "related_pages",
-]);
+PageLoadResult = namedtuple(
+    "PageLoadResult",
+    [
+        "text",
+        "related_pages",
+    ],
+)
+
 
 def fail(msg: str) -> str:
     print(f"ERROR: {msg}")
@@ -23,7 +27,7 @@ def anchors_to_page_names(anchors) -> list:
 
     for anchor in anchors:
         # remove relative wiki link
-        page_name = anchor.get("href")[len("/wiki/"):]
+        page_name = anchor.get("href")[len("/wiki/") :]
         # if there is a selector on the url -> remove it as well
         page_name, *_ = page_name.split("#")
 
@@ -81,8 +85,15 @@ def build_argument_parser():
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--pages", type=str, required=True, help="Comma separated list of pages to scrape.")
-    parser.add_argument("--limit", type=int, default=5, help="Maximum amount of fetched pages.")
+    parser.add_argument(
+        "--pages",
+        type=str,
+        required=True,
+        help="Comma separated list of pages to scrape.",
+    )
+    parser.add_argument(
+        "--limit", type=int, default=5, help="Maximum amount of fetched pages."
+    )
 
     return parser
 
