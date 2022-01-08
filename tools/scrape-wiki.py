@@ -10,9 +10,10 @@ PageLoadResult = namedtuple(
 )
 
 
-def fail(msg: str) -> str:
-    print(f"ERROR: {msg}")
-    sys.exit(1)
+def info(msg: str) -> str:
+    import sys
+
+    print(msg, file=sys.stderr)
 
 
 def is_related_page(anchor) -> bool:
@@ -61,20 +62,26 @@ def load_page(name: str, language: str = "en") -> PageLoadResult:
         return None
 
     text = response_body["parse"]["text"]
-    bs = BeautifulSoup(text, "html.parser")
+    page = BeautifulSoup(text, "html.parser")
 
-    related_pages = filter(is_related_page, bs.find_all("a"))
+    for nav_frame in page.find_all(class_="NavFrame"):
+        nav_frame.decompose()
+
+    related_pages = filter(is_related_page, page.find_all("a"))
     related_pages = anchors_to_page_names(related_pages)
 
-    paragraphs = bs.find_all("p")
+    paragraphs = page.find_all("p")
 
+    # remove some unwanted html elements
     for paragraph in paragraphs:
         remove_elements = paragraph.find_all("span")
         remove_elements.extend(paragraph.find_all(class_="reference"))
         remove_elements.extend(paragraph.find_all(class_="noprint"))
+        remove_elements.extend(paragraph.find_all(class_="internal"))
         for tag in remove_elements:
             tag.decompose()
 
+    # extract text from paragraphs and concatenate
     text = " ".join(map(lambda p: p.get_text(), paragraphs))
 
     return PageLoadResult(text=text, related_pages=related_pages)
@@ -94,11 +101,20 @@ def build_argument_parser():
     parser.add_argument(
         "--limit", type=int, default=5, help="Maximum amount of fetched pages."
     )
+    parser.add_argument(
+        "--language",
+        type=str,
+        default="en",
+        help="Language identifier: en, de, ru, etc.",
+    )
 
     return parser
 
 
-def scrape_queue(initial_pages: list, limit: int):
+def scrape_queue(initial_pages: list, limit: int, language: str):
+    import random
+    import time
+
     page_name_scrape_queue = [*initial_pages]
     scraped_pages = 0
 
@@ -109,10 +125,12 @@ def scrape_queue(initial_pages: list, limit: int):
             # no more pages to scrape
             break
 
-        page = load_page(page_name)
+        info(f"Loading page {page_name} ...")
+        page = load_page(page_name, language=language)
 
         # page loading failed. just try the next one
         if page is None:
+            info(f"Loading page {page_name} failed. Skipping.")
             continue
 
         print(page.text)
@@ -120,6 +138,10 @@ def scrape_queue(initial_pages: list, limit: int):
         # push some mentioned pages into the scrape queue
         page_name_scrape_queue.extend(page.related_pages[:4])
         scraped_pages += 1
+        # sleep a little
+        sleep_time = random.randint(0, 2)
+        info(f"Sleeping for {sleep_time} seconds.")
+        time.sleep(sleep_time)
 
 
 def main():
@@ -127,7 +149,7 @@ def main():
     args = parser.parse_args()
 
     page_name_scrape_queue = [*args.pages.split(",")]
-    scrape_queue(page_name_scrape_queue, limit=args.limit)
+    scrape_queue(page_name_scrape_queue, limit=args.limit, language=args.language)
 
 
 if __name__ == "__main__":
