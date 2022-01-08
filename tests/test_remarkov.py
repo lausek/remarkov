@@ -29,8 +29,3 @@ def test_remarkov_transitions_simple():
         assert (key,) in remarkov.transitions
 
     assert (".",) not in remarkov.transitions
-
-
-def test_remarkov_transitions_sentences():
-    remarkov = ReMarkov()
-    remarkov.add_text("And this. This is not me.")

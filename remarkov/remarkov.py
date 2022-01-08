@@ -8,6 +8,17 @@ def token_to_lowercase(token: str) -> str:
     return token.lower()
 
 
+class Transitions(dict):
+    def __init__(self):
+        self.__dict__: Dict[State, List[Token]] = {}
+
+    def declare(self, from_: State, to: Token):
+        if from_ not in self:
+            self[from_] = []
+
+        self[from_].append(to)
+
+
 class ReMarkov:
     def __init__(
         self,
@@ -19,7 +30,7 @@ class ReMarkov:
         self.tokenizer = tokenizer
         self.before_insert = before_insert
 
-        self.transitions: Dict[State, List[Token]] = {}
+        self.transitions = Transitions()
 
     def _create_initial_state(self, token_stream: TokenStream) -> List[Token]:
         return [
@@ -47,7 +58,7 @@ class ReMarkov:
                 self.transitions[key] = []
 
             token = self._trigger_before_insert(token)
-            self.transitions[key].append(token)
+            self.transitions.declare(key, token)
 
             # update current state
             state.append(token)

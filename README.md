@@ -1,15 +1,15 @@
 # MarkovAuthor
 
-Generate Text From Text.
+Generate text from text using Markov chains.
 
 ``` bash
-pip3 install markov-author
+pip3 install remarkov
 ```
 
 ## Example
 
 ``` bash
-./tools/scrape-wiki.py --pages Computer_programming | python3 -m markov-author --
+./tools/scrape-wiki.py --pages Computer_programming | remarkov
 ```
 
 ## Development
