@@ -33,9 +33,9 @@ def anchors_to_page_names(anchors) -> list:
     page_names = set()
 
     for anchor in anchors:
-        # remove relative wiki link
+        # remove relative wiki link.
         page_name = anchor.get("href")[len("/wiki/") :]
-        # if there is a selector on the url -> remove it as well
+        # if there is a selector on the url -> remove it as well.
         page_name, *_ = page_name.split("#")
 
         page_names.add(page_name)
@@ -78,7 +78,7 @@ def load_page(name: str, language: str = "en") -> PageLoadResult:
 
     paragraphs = page.find_all("p")
 
-    # remove some unwanted html elements
+    # remove some unwanted html elements.
     for paragraph in paragraphs:
         remove_elements = paragraph.find_all("span")
         remove_elements.extend(paragraph.find_all(class_="reference"))
@@ -87,7 +87,7 @@ def load_page(name: str, language: str = "en") -> PageLoadResult:
         for tag in remove_elements:
             tag.decompose()
 
-    # extract text from paragraphs and concatenate
+    # extract text from paragraphs and concatenate.
     text = " ".join(map(lambda p: p.get_text(), paragraphs))
 
     return PageLoadResult(text=text, related_pages=related_pages)
@@ -134,13 +134,13 @@ def scrape_queue(initial_pages: list, limit: int, language: str, tee: bool):
         try:
             page_name = page_name_scrape_queue.pop(0)
         except IndexError:
-            # no more pages to scrape
+            # no more pages to scrape.
             break
 
         info(f"Loading page {page_name} ...")
         page = load_page(page_name, language=language)
 
-        # page loading failed. just try the next one
+        # page loading failed. just try the next one.
         if page is None:
             info(f"Loading page {page_name} failed. Skipping.")
             continue
@@ -150,10 +150,10 @@ def scrape_queue(initial_pages: list, limit: int, language: str, tee: bool):
         if tee:
             info(page.text)
 
-        # push some mentioned pages into the scrape queue
+        # push some mentioned pages into the scrape queue.
         page_name_scrape_queue.extend(page.related_pages[:4])
         scraped_pages += 1
-        # sleep a little
+        # sleep a little.
         sleep_time = random.randint(0, 2)
         info(f"Sleeping for {sleep_time} seconds.")
         time.sleep(sleep_time)

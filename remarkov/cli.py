@@ -56,7 +56,7 @@ def run_generation():
     else:
         add_stdin_text(remarkov)
 
-    print(" ".join(remarkov.generate_text(args.words)))
+    print(remarkov.generate(args.words).text())
 
 
 def main():

@@ -1,9 +1,14 @@
 import random
 
-from typing import Callable, Dict, List, Optional, Tuple
+from typing import Callable, Dict, Generator, List, Optional, Tuple
 
-from remarkov.types import MarkovChainWalk, State, Token, Tokenizer, TokenStream
-from remarkov.tokenizer import default_tokenizer, PUNCT_TERMINATION
+from remarkov.types import State, Token, Tokenizer, TokenStream
+from remarkov.tokenizer import (
+    NO_WHITESPACE_AFTER,
+    default_tokenizer,
+    PUNCT,
+    PUNCT_TERMINATION,
+)
 
 
 def token_to_lowercase(token: str) -> str:
@@ -23,6 +28,41 @@ class Transitions(dict):
             self[from_] = []
 
         self[from_].append(to)
+
+
+class GenerationResult:
+    def __init__(self, output_stream: Generator[Token, None, None]):
+        self.output_stream = output_stream
+
+    def __str__(self):
+        """
+        Collects all emitted tokens into a string, putting a space between each token.
+        """
+
+        return " ".join(self.output_stream)
+
+    def text(self):
+        """
+        Collects all emitted tokens and tries to apply correct spacing between punctuation and words.
+        """
+
+        from remarkov.tokenizer import NO_WHITESPACE_BEFORE
+
+        prev_token, output = None, ""
+
+        for token in self.output_stream:
+            # apply special spacing rules to punctuation.
+            if token in NO_WHITESPACE_BEFORE:
+                pass
+            # make sure that output is not empty to avoid leading whitespace.
+            # if we've previously emitted a punctuation token that doesn't require a space -> avoid it.
+            elif output and prev_token not in NO_WHITESPACE_AFTER:
+                output += " "
+
+            output += token
+            prev_token = token
+
+        return output
 
 
 class ReMarkov:
@@ -62,7 +102,7 @@ class ReMarkov:
             # because the chain could be exhausted if corresponding source text ended.
             key = random.choice(self.transitions.start_states)
 
-            # make sure that the state has successor tokens
+            # make sure that the state has successor tokens.
             if key in self.transitions:
                 break
 
@@ -92,20 +132,19 @@ class ReMarkov:
             token = self._trigger_before_insert(token)
             self.transitions.declare(key, token)
 
-            # if we removed a sentence termination token in the last iteration
-            # we now have a valid start state.
+            # if we've removed a sentence termination token in the last iteration, we now have a valid start state.
             if last_removed_token in PUNCT_TERMINATION:
                 self.transitions.declare_start(key)
 
-            # update current state
+            # update current state.
             state.append(token)
-            # save the last removed token for starting state detection
+            # save the last removed token for starting state detection.
             last_removed_token = state.pop(0)
 
-    def generate_text(self, word_amount: int) -> MarkovChainWalk:
+    def _generate_stream(self, word_amount: int):
         _, state = self._get_random_start_state()
 
-        # copy state tokens into output
+        # copy state tokens into output.
         yield from state
 
         for _ in range(word_amount):
@@ -118,8 +157,11 @@ class ReMarkov:
 
             token = random.choice(self.transitions[key])
 
-            # update state
+            # update state.
             state.append(token)
             state.pop(0)
 
             yield token
+
+    def generate(self, word_amount: int) -> GenerationResult:
+        return GenerationResult(self._generate_stream(word_amount))
