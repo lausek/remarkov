@@ -11,7 +11,7 @@ import {
   Text,
 } from "grommet";
 import { grommet } from "grommet/themes";
-import { CatalogOption, Github, Moon, Sun } from "grommet-icons";
+import { CatalogOption, Console, Github, Moon, Sun } from "grommet-icons";
 import { deepMerge } from "grommet/utils";
 
 import Examples from "./sections/Examples";
@@ -63,15 +63,27 @@ const PageFooter = () => {
 const Introduction = () => {
   return (
     <Box direction="column" margin={{ vertical: "large" }}>
-      <Box pad="xsmall">
-        <Heading textAlign="center" size="large">
+      <Box pad="large">
+        <Heading textAlign="center" size="large" margin={{ vertical: "small" }}>
           ReMarkov
         </Heading>
-      </Box>
-      <Box pad="medium">
         <Text textAlign="center">
           A Python library for generating new text from existing samples.
         </Text>
+      </Box>
+
+      <Box pad="medium" align="center">
+        <Box
+          round
+          direction="row"
+          gap="small"
+          background="light-2"
+          pad="medium"
+          width="large"
+        >
+          <Console />
+          <Text>pip3 install remarkov</Text>
+        </Box>
       </Box>
     </Box>
   );

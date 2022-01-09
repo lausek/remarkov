@@ -57,16 +57,11 @@ const MarkovChainDiagram = (props: HowItWorksProps) => {
   );
 };
 
-export default function HowItWorks() {
+const Steps = () => {
   const exampleText = "This is a sample and this is another";
-  return (
-    <Box direction="column" pad={{ vertical: "large" }}>
-      <Box background="brand" margin={{ vertical: "medium" }}>
-        <Heading fill textAlign="center">
-          How It Works
-        </Heading>
-      </Box>
 
+  return (
+    <>
       <Box pad={{ horizontal: "medium" }}>
         <Heading fill size="small">
           1. Prepare the text
@@ -118,6 +113,24 @@ export default function HowItWorks() {
           Now imagine feeding this algortihm a bunch of Wikipedia pages and you
           will understand the fun behind <b>ReMarkov</b>.
         </Paragraph>
+      </Box>
+    </>
+  );
+};
+
+export default function HowItWorks() {
+  return (
+    <Box direction="column" pad={{ vertical: "large" }}>
+      <Box background="brand" margin={{ vertical: "medium" }}>
+        <Heading fill textAlign="center">
+          How It Works
+        </Heading>
+      </Box>
+
+      <Box fill="horizontal" align="center">
+        <Box width="large">
+          <Steps />
+        </Box>
       </Box>
     </Box>
   );
