@@ -1,0 +1,5 @@
+.chain-diagram {
+  justify-content: space-between;
+  flex-basis: 30%;
+  row-gap: 30px;
+}

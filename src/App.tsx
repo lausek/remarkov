@@ -28,18 +28,22 @@ const config = {
 const theme = deepMerge(grommet, {
   global: {
     colors: {
-      brand: {
-        light: "#f91f1f",
-        dark: "#f91f1f",
-      },
+      brand: "#f91f1f",
       background: {
-        dark: "dark-1",
+        dark: "#222",
       },
       focus: "brand",
+      "graph-0": {
+        light: "dark-1",
+        dark: "light-4",
+      },
     },
     font: {
       family: "Helvetica, Arial",
     },
+  },
+  anchor: {
+    color: "brand",
   },
 });
 
@@ -58,14 +62,17 @@ const PageFooter = () => {
 
 const Introduction = () => {
   return (
-    <Box fill="horizontal" pad={{ vertical: "large" }}>
-      <Heading fill textAlign="center" size="large">
-        ReMarkov
-      </Heading>
-      <Text textAlign="center">
-        Generate text from text using Markov chains.
-      </Text>
-      <Box pad="medium" />
+    <Box direction="column" margin={{ vertical: "large" }}>
+      <Box pad="xsmall">
+        <Heading textAlign="center" size="large">
+          ReMarkov
+        </Heading>
+      </Box>
+      <Box pad="medium">
+        <Text textAlign="center">
+          A Python library for generating new text from existing samples.
+        </Text>
+      </Box>
     </Box>
   );
 };
@@ -100,7 +107,7 @@ function App() {
   };
 
   return (
-    <Grommet full theme={theme} themeMode={themeMode}>
+    <Grommet theme={theme} themeMode={themeMode}>
       <Header pad="medium">
         <Box fill="horizontal" />
 
