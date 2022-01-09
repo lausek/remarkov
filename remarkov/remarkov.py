@@ -2,6 +2,7 @@ import random
 
 from typing import Callable, Dict, Generator, List, Optional, Tuple
 
+from remarkov.error import NoTransitionsDefined, NoStartStateFound, TokenStreamExhausted
 from remarkov.types import State, Token, Tokenizer, TokenStream
 from remarkov.tokenizer import (
     NO_WHITESPACE_AFTER,
@@ -91,16 +92,17 @@ class ReMarkov:
                 for _ in range(self.order)
             ]
         except StopIteration:
-            raise Exception(
-                "Creating an initial chain state exhausted the token stream. "
-                "Choose a lower chain order or provide more input text."
-            )
+            raise TokenStreamExhausted()
 
     def _get_random_start_state(self) -> Tuple[Tuple[Token], List[Token]]:
         """
         This returns an immutable tuple state for transition selection as first value and
         a mutable variant as second value.
         """
+        # if there are no transitions, no data was given. fail.
+        if not self.transitions:
+            raise NoTransitionsDefined()
+
         # if no start states were declared, it is most likely because too few sentences were
         # imported. just pick some random key then.
         if not self.transitions.start_states:
@@ -119,7 +121,7 @@ class ReMarkov:
 
             else:
                 # if we haven't managed to find a start state -> give up.
-                raise Exception("Couldn't select a valid start state.")
+                raise NoStartStateFound()
 
         return key, list(key)
 
