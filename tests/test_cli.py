@@ -9,7 +9,7 @@ def test_generating_default():
     """
 
     output = run_generation(
-        args=["--order", "1"],
+        args=["generate", "--order", "1"],
         stream=StringIO(source),
     )
 
@@ -23,7 +23,7 @@ def test_normalization():
     """
 
     output = run_generation(
-        args=["--order", "1", "--normalize"],
+        args=["generate", "--order", "1", "--normalize"],
         stream=StringIO(source),
     )
 

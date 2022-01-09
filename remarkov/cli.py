@@ -7,29 +7,38 @@ from typing import Optional, TextIO
 from remarkov.remarkov import ReMarkov, token_to_lowercase
 
 
-def build_argument_parser():
-    import argparse
-
-    parser = argparse.ArgumentParser()
-
+def build_generate_parser(subcommands):
+    parser = subcommands.add_parser(
+        "generate", help="generate text from a markov chain"
+    )
     parser.add_argument(
         "files",
         nargs="*",
         default=[],
-        help="Specifies the files to import for generation.",
+        help="specifies input files for building the model.",
     )
     parser.add_argument(
-        "--order", type=int, default=1, help="Changes the order of the Markov chain."
+        "--order", type=int, default=1, help="changes the order of the Markov chain."
     )
     parser.add_argument(
-        "--words", type=int, default=32, help="Amount of words to generate."
+        "--words", type=int, default=32, help="amount of words to generate."
     )
     parser.add_argument(
         "--normalize",
         action="store_true",
         default=False,
-        help="Translate all text to lowercase increasing the probability of word linkage.",
+        help="translate all text to lowercase increasing the probability of word linkage.",
     )
+
+
+def build_parser():
+    import argparse
+
+    parser = argparse.ArgumentParser()
+
+    subcommands = parser.add_subparsers(title="commands", dest="cmd", required=True)
+
+    build_generate_parser(subcommands)
 
     return parser
 
@@ -40,7 +49,7 @@ def add_text_from_file(remarkov: ReMarkov, file_name: str):
 
 
 def run_generation(args=None, stream: Optional[TextIO] = None) -> str:
-    parser = build_argument_parser()
+    parser = build_parser()
     args = parser.parse_args(args)
 
     before_insert = token_to_lowercase if args.normalize else None
