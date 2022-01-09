@@ -82,6 +82,7 @@ def load_page(name: str, language: str = "en") -> PageLoadResult:
     for paragraph in paragraphs:
         remove_elements = paragraph.find_all("span")
         remove_elements.extend(paragraph.find_all(class_="reference"))
+        remove_elements.extend(paragraph.find_all(class_="references"))
         remove_elements.extend(paragraph.find_all(class_="noprint"))
         remove_elements.extend(paragraph.find_all(class_="internal"))
         for tag in remove_elements:

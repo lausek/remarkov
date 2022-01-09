@@ -15,6 +15,10 @@ def token_to_lowercase(token: str) -> str:
     return token.lower()
 
 
+def token_to_uppercase(token: str) -> str:
+    return token.upper()
+
+
 class Transitions(dict):
     def __init__(self):
         self.__dict__: Dict[State, List[Token]] = {}
@@ -70,7 +74,7 @@ class ReMarkov:
         self,
         order: int = 1,
         tokenizer: Tokenizer = default_tokenizer,
-        before_insert: Optional[Callable[[str], str]] = token_to_lowercase,
+        before_insert: Optional[Callable[[str], str]] = None,
     ):
         self.order = order
         self.tokenizer = tokenizer
@@ -97,18 +101,25 @@ class ReMarkov:
         This returns an immutable tuple state for transition selection as first value and
         a mutable variant as second value.
         """
-        for _ in range(100):
-            # unfortunately, we cannot trust this start state to have a successor token,
-            # because the chain could be exhausted if corresponding source text ended.
-            key = random.choice(self.transitions.start_states)
-
-            # make sure that the state has successor tokens.
-            if key in self.transitions:
-                break
+        # if no start states were declared, it is most likely because too few sentences were
+        # imported. just pick some random key then.
+        if not self.transitions.start_states:
+            # TODO: avoid this list conversion
+            key = random.choice(list(self.transitions.keys()))
 
         else:
-            # if we haven't managed to find a start state -> give up.
-            raise Exception("Couldn't select a valid start state.")
+            for _ in range(100):
+                # unfortunately, we cannot trust this start state to have a successor token,
+                # because the chain could be exhausted if corresponding source text ended.
+                key = random.choice(self.transitions.start_states)
+
+                # make sure that the state has successor tokens.
+                if key in self.transitions:
+                    break
+
+            else:
+                # if we haven't managed to find a start state -> give up.
+                raise Exception("Couldn't select a valid start state.")
 
         return key, list(key)
 

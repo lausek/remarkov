@@ -2,7 +2,9 @@
 
 import sys
 
-from remarkov.remarkov import ReMarkov
+from typing import Optional, TextIO
+
+from remarkov.remarkov import ReMarkov, token_to_lowercase
 
 
 def build_argument_parser():
@@ -23,10 +25,10 @@ def build_argument_parser():
         "--words", type=int, default=32, help="Amount of words to generate."
     )
     parser.add_argument(
-        "--original-caps",
+        "--normalize",
         action="store_true",
         default=False,
-        help="Keep capitalization of the source text.",
+        help="Translate all text to lowercase increasing the probability of word linkage.",
     )
 
     return parser
@@ -37,30 +39,28 @@ def add_text_from_file(remarkov: ReMarkov, file_name: str):
         remarkov.add_text(fin.read())
 
 
-def add_stdin_text(remarkov: ReMarkov):
-    remarkov.add_text(sys.stdin.read())
-
-
-def run_generation():
+def run_generation(args=None, stream: Optional[TextIO] = None) -> str:
     parser = build_argument_parser()
-    args = parser.parse_args()
+    args = parser.parse_args(args)
 
-    if args.original_caps:
-        remarkov = ReMarkov(order=args.order, before_insert=None)
-    else:
-        remarkov = ReMarkov(order=args.order)
+    before_insert = token_to_lowercase if args.normalize else None
+    remarkov = ReMarkov(order=args.order, before_insert=before_insert)
 
     if args.files:
         for file_name in args.files:
             add_text_from_file(remarkov, file_name)
     else:
-        add_stdin_text(remarkov)
+        if not stream:
+            stream = sys.stdin
 
-    print(remarkov.generate(args.words).text())
+        remarkov.add_text(stream.read())
+
+    return remarkov.generate(args.words).text()
 
 
 def main():
     try:
-        run_generation()
+        output = run_generation()
+        print(output)
     except Exception as e:
         print(f"ERROR: {e}")
