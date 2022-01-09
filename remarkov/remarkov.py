@@ -3,11 +3,11 @@ import random
 from typing import Callable, Dict, Generator, List, Optional, Tuple
 
 from remarkov.error import NoTransitionsDefined, NoStartStateFound, TokenStreamExhausted
+from remarkov.model import V1Decoder, V1Encoder
 from remarkov.types import State, Token, Tokenizer, TokenStream
 from remarkov.tokenizer import (
     NO_WHITESPACE_AFTER,
     default_tokenizer,
-    PUNCT,
     PUNCT_TERMINATION,
 )
 
@@ -85,6 +85,10 @@ class ReMarkov:
 
         assert 1 <= self.order, "Order must be greater than 1."
 
+    @classmethod
+    def from_json(cls: "ReMarkov", raw: str) -> "ReMarkov":
+        return V1Decoder().decode(raw)
+
     def _create_initial_state(self, token_stream: TokenStream) -> List[Token]:
         try:
             return [
@@ -145,8 +149,13 @@ class ReMarkov:
             token = self._trigger_before_insert(token)
             self.transitions.declare(key, token)
 
-            # if we've removed a sentence termination token in the last iteration, we now have a valid start state.
-            if last_removed_token in PUNCT_TERMINATION:
+            # decide whether we should declare the current state a valid entry point of the chain.
+            if (
+                # we consider the beginning of a text to be a valid entry point so check if this is the first iteration.
+                last_removed_token is None
+                # if we've removed a sentence termination token in the last iteration, we now have a valid start state.
+                or last_removed_token in PUNCT_TERMINATION
+            ):
                 self.transitions.declare_start(key)
 
             # update current state.
@@ -178,3 +187,6 @@ class ReMarkov:
 
     def generate(self, word_amount: int) -> GenerationResult:
         return GenerationResult(self._generate_stream(word_amount))
+
+    def to_json(self, version=1) -> str:
+        return V1Encoder().encode(self)
