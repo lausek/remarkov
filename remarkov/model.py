@@ -1,6 +1,7 @@
 from json import JSONDecoder, JSONEncoder
 
 ORDER, TRANSITIONS, START_STATES = "order", "transitions", "start_states"
+DEFAULT_JSON_INDENT = 4
 
 
 class V1Decoder(JSONDecoder):
@@ -28,6 +29,9 @@ class V1Decoder(JSONDecoder):
 
 
 class V1Encoder(JSONEncoder):
+    def __init__(self, compress: bool):
+        super().__init__(indent=None if compress else DEFAULT_JSON_INDENT)
+
     def default(self, obj):
         return {
             ORDER: obj.order,

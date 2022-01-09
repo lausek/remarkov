@@ -188,5 +188,5 @@ class ReMarkov:
     def generate(self, word_amount: int) -> GenerationResult:
         return GenerationResult(self._generate_stream(word_amount))
 
-    def to_json(self, version=1) -> str:
-        return V1Encoder().encode(self)
+    def to_json(self, version=1, compress: bool = False) -> str:
+        return V1Encoder(compress=compress).encode(self)
