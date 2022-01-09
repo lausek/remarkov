@@ -89,6 +89,35 @@ const Introduction = () => {
   );
 };
 
+const JumpRightIn = () => {
+  return (
+    <Box direction="column" pad={{ vertical: "large" }}>
+      <Box background="brand" margin={{ vertical: "large" }}>
+        <Heading id="how-it-works" fill textAlign="center" size="small">
+          Jump Right In
+        </Heading>
+      </Box>
+
+      <Box fill="horizontal" align="center">
+        <Box direction="row" gap="large">
+          <Anchor
+            size="large"
+            label="Docs"
+            href={config.links.docs}
+            icon={<CatalogOption />}
+          />
+          <Anchor
+            size="large"
+            label="GitHub"
+            href={config.links.github}
+            icon={<Github />}
+          />
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
 type ThemeMode = "light" | "dark";
 
 const useLocalStorage = (
@@ -141,6 +170,7 @@ function App() {
         <Introduction />
         <HowItWorks />
         <Examples />
+        <JumpRightIn />
       </Main>
       <PageFooter />
     </Grommet>
