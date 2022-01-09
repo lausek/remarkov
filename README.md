@@ -21,3 +21,19 @@ Make sure you run pytest as module. This will add the current directory to the i
 ``` bash
 python3 -m pytest
 ```
+
+This project uses [black](https://github.com/psf/black) for source code formatting:
+
+``` bash
+black .
+```
+
+Publishing is done like this (don't forget to bump the version in `setup.py`):
+
+``` bash
+pip3 install twine # optional
+
+python3 setup.py sdist bdist_wheel
+twine check "dist/*"
+twine upload "dist/*"
+```

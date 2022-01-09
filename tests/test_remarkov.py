@@ -1,6 +1,6 @@
 import pytest
 
-from remarkov.error import NoTransitionsDefined
+from remarkov.error import NoTransitionsDefined, TokenStreamExhausted
 from remarkov.prelude import ReMarkov, token_to_lowercase, token_to_uppercase
 
 
@@ -45,3 +45,14 @@ def test_remarkov_empty_chain_fails():
 
     with pytest.raises(NoTransitionsDefined):
         assert remarkov.generate(10).text()
+
+
+def test_remarkov_order_too_big():
+    remarkov = ReMarkov(order=6)
+
+    with pytest.raises(TokenStreamExhausted):
+        remarkov.add_text("A b c d e")
+
+    with pytest.raises(NoTransitionsDefined):
+        remarkov.add_text("A b c d e f")
+        remarkov.generate(10).text()
