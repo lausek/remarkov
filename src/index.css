@@ -5,3 +5,7 @@ body {
 a {
   padding: 5px;
 }
+
+p {
+  text-align: justify;
+}

@@ -1,4 +1,5 @@
 import { Anchor, Box, Diagram, Heading, Paragraph, Stack } from "grommet";
+import { Console } from "grommet-icons";
 import "./HowItWorks.css";
 
 interface HowItWorksProps {
@@ -57,12 +58,20 @@ const MarkovChainDiagram = (props: HowItWorksProps) => {
   );
 };
 
+const Step = (props: any) => {
+  return (
+    <Box margin={{ top: "large" }} pad={{ horizontal: "medium" }}>
+      {props.children}
+    </Box>
+  );
+};
+
 const Steps = () => {
   const exampleText = "This is a sample and this is another";
 
   return (
     <>
-      <Box pad={{ horizontal: "medium" }}>
+      <Step>
         <Heading fill size="small">
           1. Prepare the text
         </Heading>
@@ -70,12 +79,12 @@ const Steps = () => {
           Collect some text samples that the library can use to derive rules
           from. Let us take a simple sentence for now:
         </Paragraph>
-        <Paragraph fill textAlign="center">
+        <Paragraph fill textAlign="center" className="source-text">
           {exampleText}
         </Paragraph>
-      </Box>
+      </Step>
 
-      <Box pad={{ horizontal: "medium" }}>
+      <Step>
         <Heading fill size="small">
           2. Build a Markov chain
         </Heading>
@@ -87,33 +96,34 @@ const Steps = () => {
           >
             Markov chain
           </Anchor>{" "}
-          is a probabilistic model that defines a relationship between
-          individual states (<b>state</b> being synonymous with a single{" "}
-          <b>word</b>). There is a certain probability assigned to each edge
-          specifying how likely a connected node will follow a predecessor.
+          is a probabilistic model that puts individual states - state being
+          synonymous with a single word - into relation. States are linked by
+          the likelihood with which a transition between them happens. Note that
+          these transitions are directed so <code>A -&gt; B</code> does not
+          imply <code>B -&gt; A</code>.
         </Paragraph>
         <MarkovChainDiagram text={exampleText} />
-      </Box>
+      </Step>
 
-      <Box pad={{ horizontal: "medium" }}>
+      <Step>
         <Heading fill size="small">
           3. Do a random walk
         </Heading>
         <Paragraph fill>
-          We now pick a random start <b>word</b> and do a coin flip on each
-          iteration. When transitioning to the next node, we output the name of
-          our previous state. The so produced text will most likely be somewhat
+          We now pick a random start word and role a dice on each iteration.
+          When transitioning to the next node, we output the name of our
+          previous state. The so produced text will most likely be somewhat
           comprehensible because we have created our model on the basis of real
           examples:
         </Paragraph>
-        <Paragraph fill textAlign="center">
+        <Paragraph fill textAlign="center" className="source-text">
           a sample and this is a sample and this is another
         </Paragraph>
         <Paragraph fill>
           Now imagine feeding this algortihm a bunch of Wikipedia pages and you
-          will understand the fun behind <b>ReMarkov</b>.
+          will understand the fun behind ReMarkov.
         </Paragraph>
-      </Box>
+      </Step>
     </>
   );
 };
@@ -121,8 +131,8 @@ const Steps = () => {
 export default function HowItWorks() {
   return (
     <Box direction="column" pad={{ vertical: "large" }}>
-      <Box background="brand" margin={{ vertical: "medium" }}>
-        <Heading fill textAlign="center">
+      <Box background="brand" margin={{ vertical: "large" }}>
+        <Heading id="how-it-works" fill textAlign="center">
           How It Works
         </Heading>
       </Box>

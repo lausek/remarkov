@@ -3,3 +3,8 @@
   flex-basis: 30%;
   row-gap: 30px;
 }
+
+code,
+.source-text {
+  font-family: "Courier New", Courier, monospace;
+}

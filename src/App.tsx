@@ -72,7 +72,7 @@ const Introduction = () => {
         </Text>
       </Box>
 
-      <Box pad="medium" align="center">
+      <Box pad={{ vertical: "large", horizontal: "xlarge" }} align="center">
         <Box
           round
           direction="row"

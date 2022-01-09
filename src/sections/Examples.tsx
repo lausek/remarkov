@@ -4,7 +4,7 @@ export default function Examples() {
   return (
     <Box fill="horizontal" pad={{ vertical: "large" }}>
       <Box>
-        <Heading fill textAlign="center">
+        <Heading id="examples" fill textAlign="center">
           Examples
         </Heading>
       </Box>
