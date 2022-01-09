@@ -1,3 +1,5 @@
+[![PyPI version](https://badge.fury.io/py/remarkov.svg)](https://badge.fury.io/py/remarkov)
+
 # ReMarkov
 
 Generate text from text using Markov chains.
