@@ -4,7 +4,7 @@ from remarkov.error import NoTransitionsDefined, TokenStreamExhausted
 from remarkov.prelude import ReMarkov, token_to_lowercase, token_to_uppercase
 
 
-def test_remarkov_before_insert_disabled():
+def test_before_insert_disabled():
     remarkov = ReMarkov(before_insert=None)
     remarkov.add_text("I have a dream.")
 
@@ -14,7 +14,7 @@ def test_remarkov_before_insert_disabled():
     assert (".",) not in remarkov.transitions
 
 
-def test_remarkov_before_insert():
+def test_before_insert():
     remarkov = ReMarkov(before_insert=token_to_uppercase)
     remarkov.add_text("I have a dream.")
 
@@ -24,7 +24,7 @@ def test_remarkov_before_insert():
     assert (".",) not in remarkov.transitions
 
 
-def test_remarkov_transitions_simple():
+def test_transitions_simple():
     remarkov = ReMarkov(before_insert=token_to_lowercase)
     remarkov.add_text("I HaVe A dReAm.")
 
@@ -34,20 +34,7 @@ def test_remarkov_transitions_simple():
     assert (".",) not in remarkov.transitions
 
 
-def test_remarkov_works_without_declared_start():
-    remarkov = ReMarkov(before_insert=token_to_lowercase)
-    remarkov.add_text("Way too simple sentence")
-    assert remarkov.generate(5).text()
-
-
-def test_remarkov_empty_chain_fails():
-    remarkov = ReMarkov()
-
-    with pytest.raises(NoTransitionsDefined):
-        assert remarkov.generate(10).text()
-
-
-def test_remarkov_order_too_big():
+def test_order_too_big():
     remarkov = ReMarkov(order=6)
 
     with pytest.raises(TokenStreamExhausted):
