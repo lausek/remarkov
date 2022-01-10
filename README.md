@@ -16,6 +16,17 @@ Scrape the Wikipedia page for "Computer Programming" and generate a new text fro
 ./tools/scrape-wiki.py --pages Computer_programming | remarkov generate
 ```
 
+You can also use `remarkov` programmatically:
+
+``` bash
+from remarkov import create_model
+
+model = create_model()
+model.add_text("This is a sample text and this is another.")
+
+print(model.generate().text())
+```
+
 ## Development
 
 Make sure you run pytest as module. This will add the current directory to the import path:

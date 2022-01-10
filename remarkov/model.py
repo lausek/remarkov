@@ -11,6 +11,8 @@ from remarkov.tokenizer import (
     PUNCT_TERMINATION,
 )
 
+DEFAULT_GENERATE_WORD_AMOUNT = 32
+
 
 class Transitions(dict):
     def __init__(self):
@@ -177,7 +179,9 @@ class ReMarkovModel:
 
             yield token
 
-    def generate(self, word_amount: int) -> GenerationResult:
+    def generate(
+        self, word_amount: int = DEFAULT_GENERATE_WORD_AMOUNT
+    ) -> GenerationResult:
         return GenerationResult(self._generate_stream(word_amount))
 
     def to_json(self, version=1, compress: bool = False) -> str:

@@ -5,8 +5,8 @@ import sys
 from typing import Optional, TextIO
 
 from remarkov.tokenizer import token_to_lowercase
-from remarkov.model import ReMarkovModel
-from remarkov import create_model, load_model
+from remarkov.model import DEFAULT_GENERATE_WORD_AMOUNT, ReMarkovModel
+from remarkov import create_model
 
 
 def create_build_parser(subcommands):
@@ -51,7 +51,10 @@ def create_generate_parser(subcommands):
         "--order", type=int, default=1, help="changes the order of the Markov chain."
     )
     parser.add_argument(
-        "--words", type=int, default=32, help="amount of words to generate."
+        "--words",
+        type=int,
+        default=DEFAULT_GENERATE_WORD_AMOUNT,
+        help="amount of words to generate.",
     )
     parser.add_argument(
         "--normalize",
