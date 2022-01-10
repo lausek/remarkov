@@ -14,3 +14,11 @@ def default_tokenizer(text: str) -> TokenStream:
         text = text.replace(punct, f" {punct} ")
 
     return (token for token in text.split(" ") if token)
+
+
+def token_to_lowercase(token: str) -> str:
+    return token.lower()
+
+
+def token_to_uppercase(token: str) -> str:
+    return token.upper()

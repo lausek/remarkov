@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="remarkov",
-    version="0.1.1",
+    version="0.2.0",
     description="Generate text from text using Markov chains.",
     long_description=open(Path(__file__).parent / "README.md").read(),
     long_description_content_type="text/markdown",

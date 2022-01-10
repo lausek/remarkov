@@ -4,7 +4,9 @@ import sys
 
 from typing import Optional, TextIO
 
-from remarkov.remarkov import ReMarkov, token_to_lowercase
+from remarkov.tokenizer import token_to_lowercase
+from remarkov.model import ReMarkovModel
+from remarkov import create_model, load_model
 
 
 def create_build_parser(subcommands):
@@ -72,7 +74,7 @@ def create_parser():
     return parser
 
 
-def add_text_from_file(remarkov: ReMarkov, file_name: str):
+def add_text_from_file(remarkov: ReMarkovModel, file_name: str):
     with open(file_name, "r") as fin:
         remarkov.add_text(fin.read())
 
@@ -82,21 +84,21 @@ def run_command(args=None, stream: Optional[TextIO] = None) -> str:
     args = parser.parse_args(args)
 
     before_insert = token_to_lowercase if args.normalize else None
-    remarkov = ReMarkov(order=args.order, before_insert=before_insert)
+    model = create_model(order=args.order, before_insert=before_insert)
 
     if args.files:
         for file_name in args.files:
-            add_text_from_file(remarkov, file_name)
+            add_text_from_file(model, file_name)
     else:
         if not stream:
             stream = sys.stdin
 
-        remarkov.add_text(stream.read())
+        model.add_text(stream.read())
 
     if args.cmd == "build":
-        return remarkov.to_json(compress=args.compress)
+        return model.to_json(compress=args.compress)
     elif args.cmd == "generate":
-        return remarkov.generate(args.words).text()
+        return model.generate(args.words).text()
     else:
         raise NotImplementedError()
 
