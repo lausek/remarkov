@@ -5,7 +5,13 @@ A tool for scraping Wikipedia posts. This prints the extracted text to stdout.
 """
 
 from collections import namedtuple
-import sys
+
+REMOVE_CLASSES = [
+    "reference",
+    "references",
+    "noprint",
+    "internal",
+]
 
 PageLoadResult = namedtuple(
     "PageLoadResult",
@@ -81,10 +87,11 @@ def load_page(name: str, language: str = "en") -> PageLoadResult:
     # remove some unwanted html elements.
     for paragraph in paragraphs:
         remove_elements = paragraph.find_all("span")
-        remove_elements.extend(paragraph.find_all(class_="reference"))
-        remove_elements.extend(paragraph.find_all(class_="references"))
-        remove_elements.extend(paragraph.find_all(class_="noprint"))
-        remove_elements.extend(paragraph.find_all(class_="internal"))
+
+        # remove html elements that we do not want in our output. references, etc.
+        for cls in REMOVE_CLASSES:
+            remove_elements.extend(paragraph.find_all(class_=cls))
+
         for tag in remove_elements:
             tag.decompose()
 
@@ -100,25 +107,25 @@ def build_argument_parser():
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
-        "--pages",
-        type=str,
-        required=True,
-        help="Comma separated list of pages to scrape.",
+        "pages",
+        nargs="+",
+        default=[],
+        help="list of pages to scrape",
     )
     parser.add_argument(
-        "--limit", type=int, default=5, help="Maximum amount of fetched pages."
+        "--limit", type=int, default=5, help="maximum amount of fetched pages"
     )
     parser.add_argument(
         "--language",
         type=str,
         default="en",
-        help="Language identifier: en, de, ru, etc.",
+        help="language identifier: en, de, ru, etc.",
     )
     parser.add_argument(
         "--tee",
         action="store_true",
         default=False,
-        help="Sends the scraped text to stdout and stderr.",
+        help="sends the scraped text to stdout and stderr",
     )
 
     return parser
@@ -164,7 +171,7 @@ def main():
     parser = build_argument_parser()
     args = parser.parse_args()
 
-    page_name_scrape_queue = [*args.pages.split(",")]
+    page_name_scrape_queue = [*args.pages]
     scrape_queue(
         page_name_scrape_queue, limit=args.limit, language=args.language, tee=args.tee
     )
