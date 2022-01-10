@@ -1,9 +1,12 @@
-import pytest
+import os.path
+import tempfile
 
 from io import StringIO
 from typing import List
+from remarkov.tokenizer import default_tokenizer
 
 from remarkov.cli import run_command
+from remarkov.model import ReMarkovModel
 
 
 SOURCE = """
@@ -11,28 +14,55 @@ This is a Valid Text for Building.
 """
 
 
+def create_test_model(order: int = 1) -> ReMarkovModel:
+    from remarkov import create_model
+
+    model = create_model(
+        order=order,
+    )
+
+    model.add_text(SOURCE)
+
+    return model
+
+
+def save_test_model(tempdir: str, order: int = 1) -> str:
+    fname = os.path.join(tempdir, "model.json")
+    model = create_test_model(order=order)
+
+    with open(fname, "w") as fout:
+        fout.write(model.to_json())
+
+    assert os.path.exists(fname)
+
+    return fname
+
+
 def tokens_have_uppercase(tokens: List[str]) -> bool:
     return "".join(tokens).isupper()
 
 
-def test_generating_default():
+def test_generating_from_file():
+    with tempfile.TemporaryDirectory() as tempdir:
+        fname = save_test_model(tempdir)
+
+        output = run_command(
+            args=["generate", "--model", fname, "--words", "42"],
+        )
+        words = list(default_tokenizer(output))
+
+        assert 42 == len(words), " ".join(words)
+
+
+def test_generating_from_stream():
+    model = create_test_model()
     output = run_command(
-        args=["generate", "--order", "1"],
-        stream=StringIO(SOURCE),
+        args=["generate", "--words", "51"],
+        stream=StringIO(model.to_json()),
     )
+    words = list(default_tokenizer(output))
 
-    # there is at least one char that is uppercase
-    assert any(map(lambda c: c.isupper(), output))
-
-
-def test_generating_normalization():
-    output = run_command(
-        args=["generate", "--order", "1", "--normalize"],
-        stream=StringIO(SOURCE),
-    )
-
-    # not one char is uppercase
-    assert not any(map(lambda c: c.isupper(), output))
+    assert 51 == len(words), " ".join(words)
 
 
 def test_building_default_order():

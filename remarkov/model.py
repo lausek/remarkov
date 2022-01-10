@@ -157,13 +157,17 @@ class ReMarkovModel:
             # save the last removed token for starting state detection.
             last_removed_token = state.pop(0)
 
-    def _generate_stream(self, word_amount: int):
+    def _generate_stream(self):
+        """
+        Creates an endless stream of words.
+        """
+
         _, state = self._get_random_start_state()
 
         # copy state tokens into output.
         yield from state
 
-        for _ in range(word_amount):
+        while True:
             key: Tuple[Token] = tuple(state)
 
             if key not in self.transitions:
@@ -179,10 +183,19 @@ class ReMarkovModel:
 
             yield token
 
+    def _generate_stream_with_limit(self, word_amount: int):
+        """
+        This encapsulates text output termination.
+        """
+
+        stream = self._generate_stream()
+        for _ in range(word_amount):
+            yield next(stream)
+
     def generate(
         self, word_amount: int = DEFAULT_GENERATE_WORD_AMOUNT
     ) -> GenerationResult:
-        return GenerationResult(self._generate_stream(word_amount))
+        return GenerationResult(self._generate_stream_with_limit(word_amount))
 
     def to_json(self, version=1, compress: bool = False) -> str:
         return V1Encoder(compress=compress).encode(self)

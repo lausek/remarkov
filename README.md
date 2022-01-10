@@ -13,7 +13,7 @@ pip3 install remarkov
 Scrape the Wikipedia page for "Computer Programming" and generate a new text from it:
 
 ``` bash
-./tools/scrape-wiki.py --pages Computer_programming | remarkov generate
+./tools/scrape-wiki.py Computer_programming | remarkov build | remarkov generate
 ```
 
 You can also use `remarkov` programmatically:
