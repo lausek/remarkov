@@ -1,3 +1,11 @@
+"""
+Implements the Markov chain and text generation functionality.
+
+The Markov chain itself defines a state as a tuple of tokens. The length of this tuple is defined by 
+the chain order at `remarkov.model.Model.order`. A chain of order 1 (default) uses a one-dimensional tuple.
+On each generation step, the state is rotated left removing the oldest token and appending a new one.
+"""
+
 import random
 
 from typing import Callable, Dict, Generator, List, Optional, Tuple
@@ -15,14 +23,31 @@ DEFAULT_GENERATE_WORD_AMOUNT = 32
 
 
 class Transitions(dict):
+    """
+    Stores all state transitions of the Markov chain.
+    """
+
     def __init__(self):
         self.__dict__: Dict[State, List[Token]] = {}
         self.start_states: List[State] = []
 
     def declare_start(self, from_: State):
+        """
+        Add a valid starting state `from_` to the chain.
+        """
+
         self.start_states.append(from_)
 
     def declare(self, from_: State, to: Token):
+        """
+        Add a transition from state `from_` to a successor state.
+
+        The successor state is equal to `from_` where the last token is `to` and the first token of `from_` is removed
+        so that the overall length complies with `remarkov.model.Model.order`.
+
+        You can call this method several times thus increasing the chance of this transition happening.
+        """
+
         if from_ not in self:
             self[from_] = []
 
@@ -30,6 +55,10 @@ class Transitions(dict):
 
 
 class GenerationResult:
+    """
+    Output type of `remarkov.model.Model.generate`.
+    """
+
     def __init__(self, output_stream: Generator[Token, None, None]):
         self.output_stream = output_stream
 
@@ -64,7 +93,7 @@ class GenerationResult:
         return output
 
 
-class ReMarkovModel:
+class Model:
     def __init__(
         self,
         order: int = 1,
@@ -79,8 +108,12 @@ class ReMarkovModel:
 
         assert 1 <= self.order, "Order must be greater than 1."
 
-    @classmethod
-    def from_json(cls: "ReMarkovModel", raw: str) -> "ReMarkovModel":
+    @staticmethod
+    def from_json(raw: str) -> "Model":
+        """
+        Deserialize a model from a JSON string. You should prefer `remarkov.parse_model` over this function.
+        """
+
         return V1Decoder().decode(raw)
 
     def _create_initial_state(self, token_stream: TokenStream) -> List[Token]:
@@ -130,6 +163,12 @@ class ReMarkovModel:
         return token
 
     def add_text(self, text: str, tokenizer: Optional[Tokenizer] = None):
+        """
+        Insert some text into the Markov chain.
+
+        This could raise a `remarkov.error.TokenStreamExhausted` exception if the chain order is greater than the amount of tokens determined.
+        """
+
         if tokenizer is None:
             tokenizer = self.tokenizer
 
@@ -195,7 +234,17 @@ class ReMarkovModel:
     def generate(
         self, word_amount: int = DEFAULT_GENERATE_WORD_AMOUNT
     ) -> GenerationResult:
+        """
+        Generate a random text with `word_amount` tokens.
+        """
+
         return GenerationResult(self._generate_stream_with_limit(word_amount))
 
     def to_json(self, version=1, compress: bool = False) -> str:
+        """
+        Serializes the model into a JSON string.
+
+        `version` is currently not in use.
+        """
+
         return V1Encoder(compress=compress).encode(self)

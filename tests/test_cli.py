@@ -6,7 +6,7 @@ from typing import List
 from remarkov.tokenizer import default_tokenizer
 
 from remarkov.cli import run_command
-from remarkov.model import ReMarkovModel
+from remarkov.model import Model
 
 
 SOURCE = """
@@ -14,7 +14,7 @@ This is a Valid Text for Building.
 """
 
 
-def create_test_model(order: int = 1) -> ReMarkovModel:
+def create_test_model(order: int = 1) -> Model:
     from remarkov import create_model
 
     model = create_model(

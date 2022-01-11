@@ -5,7 +5,7 @@ import sys
 from typing import Optional, TextIO
 
 from remarkov.tokenizer import token_to_lowercase
-from remarkov.model import DEFAULT_GENERATE_WORD_AMOUNT, ReMarkovModel
+from remarkov.model import DEFAULT_GENERATE_WORD_AMOUNT, Model
 from remarkov import create_model, load_model, parse_model
 
 
@@ -68,7 +68,7 @@ def create_parser():
     return parser
 
 
-def add_text_from_file(remarkov: ReMarkovModel, file_name: str):
+def add_text_from_file(remarkov: Model, file_name: str):
     with open(file_name, "r") as fin:
         remarkov.add_text(fin.read())
 

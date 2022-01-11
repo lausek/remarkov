@@ -25,6 +25,7 @@ model = create_model()
 model.add_text("This is a sample text and this is another.")
 
 print(model.generate().text())
+# "This is a sample text and this is a sample text and this is a sample text and this is a sample and this is another."
 ```
 
 ## Development
@@ -39,6 +40,12 @@ This project uses [black](https://github.com/psf/black) for source code formatti
 
 ``` bash
 black .
+```
+
+Generate documentation for the project (this uses the original pdoc at [pdoc.dev](https://pdoc.dev)):
+
+``` bash
+pdoc remarkov
 ```
 
 Publishing is done like this (don't forget to bump the version in `setup.py`):

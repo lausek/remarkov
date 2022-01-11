@@ -10,9 +10,9 @@ class V1Decoder(JSONDecoder):
 
     def __object_hook(self, obj):
         if ORDER in obj and TRANSITIONS in obj and START_STATES in obj:
-            from remarkov.model import ReMarkovModel
+            from remarkov.model import Model
 
-            remarkov = ReMarkovModel()
+            remarkov = Model()
             remarkov.order = obj[ORDER]
 
             for transition in obj[TRANSITIONS]:

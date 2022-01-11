@@ -1,4 +1,8 @@
 class NoTransitionsDefined(Exception):
+    """
+    Generating text from an empty Markov chain does not work.
+    """
+
     def __init__(self):
         super().__init__(
             "The Markov chain does not have any transitions. "
