@@ -1,0 +1,26 @@
+{
+    "Article": {
+        "1": ["Article 1", "Article 1 second"],
+        "2": ["Article 2", "Article 2 second"],
+        "3": ["Article 3", "Article 3 second"],
+        "4": ["Article 4", "Article 4 second"]
+    },
+    "Birthday": {
+        "1": ["Birthday 1", "Birthday 1 second"],
+        "2": ["Birthday 2", "Birthday 2 second"],
+        "3": ["Birthday 3", "Birthday 3 second"],
+        "4": ["Birthday 4", "Birthday 4 second"]
+    },
+    "Horoscope": {
+        "1": ["Horoscope 1", "Horoscope 1 second"],
+        "2": ["Horoscope 2", "Horoscope 2 second"],
+        "3": ["Horoscope 3", "Horoscope 3 second"],
+        "4": ["Horoscope 4", "Horoscope 4 second"]
+    },
+    "Utterance": {
+        "1": ["Utterance 1", "Utterance 1 second"],
+        "2": ["Utterance 2", "Utterance 2 second"],
+        "3": ["Utterance 3", "Utterance 3 second"],
+        "4": ["Utterance 4", "Utterance 4 second"]
+    }
+}

@@ -76,7 +76,8 @@ const Steps = () => {
         </Heading>
         <Paragraph fill>
           Collect some text samples that the library can use to derive rules
-          from. Let us take a simple sentence for now:
+          from. You should select valid text with correct grammar instead of an incomprehensible sequence of words.
+          This is what makes the output text more realistic. Let us take a simple sentence for now:
         </Paragraph>
         <Paragraph fill textAlign="center" className="source-text">
           {exampleText}
