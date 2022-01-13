@@ -53,8 +53,7 @@ const PageFooter = () => {
       <Text size="small">
         2021
         <Anchor label="ReMarkov" href={config.links.github} />
-        | Made with
-        <Anchor label="Grommet" href="https://v2.grommet.io/" />
+        | Made by <Anchor label="lausek" href="https://lausek.eu" /> with <Anchor label="Grommet" href="https://v2.grommet.io/" />.
       </Text>
     </Footer>
   );
@@ -168,8 +167,8 @@ function App() {
 
       <Main>
         <Introduction />
-        <HowItWorks />
         <Examples />
+        <HowItWorks />
         <JumpRightIn />
       </Main>
       <PageFooter />

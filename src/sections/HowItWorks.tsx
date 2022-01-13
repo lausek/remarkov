@@ -1,5 +1,4 @@
 import { Anchor, Box, Diagram, Heading, Paragraph, Stack } from "grommet";
-import { Console } from "grommet-icons";
 import "./HowItWorks.css";
 
 interface HowItWorksProps {
