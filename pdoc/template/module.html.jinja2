@@ -1,16 +1,21 @@
 {% extends "default/module.html.jinja2" %}
 
+{# redeclare this block as we do not use the module index #}
 {% block module_list_link %}
+    {% set parentmodule = ".".join(module.modulename.split(".")[:-1]) %}
+    {% if parentmodule and parentmodule in all_modules %}
+        <a class="pdoc-button module-list-button" href="../{{ parentmodule.split(".")[-1] }}.html">
+            {% include "box-arrow-in-left.svg" %}
+            &nbsp;
+            {{- parentmodule -}}
+        </a>
+    {% endif %}
 {% endblock %}
 
 <style>
 
     {% block style_theme %}
-        {#
-        We can optionally enable dark mode depending on the user's preferences:
-        {{ super() }}
-        @media (prefers-color-scheme: dark) {
-        #}
+        /* use dark mode by default */
         :root {
             --pdoc-background: #212529;
 
@@ -29,16 +34,38 @@
             --def: orange;
             --annotation: #00c037;
         }
-        {# } #}
     {% endblock %}
 
 </style>
 
-<script>
-document.addEventListener("DOMContentLoaded"), function () {
-    const theme = localStorage.getItem("theme");
-    if(theme === "light") {
+{% block body %}
+    {{ super() }}
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        /* if the user decided to use the light theme -> change back */
 
-    }
-});
-</script>
+        const theme = localStorage.getItem("theme");
+        if(theme === "light") {
+            const style = document.createElement("style");
+
+            style.innerHTML = `
+            :root {
+                --pdoc-background: white;
+
+                --text: #222;
+                --muted: #9d9d9d;
+                --link: var(--accent2);
+                --link-hover: red;
+                --code: var(--accent);
+                --active: #555;
+
+                --accent: #EEE;
+                --accent2: #f91f1f;
+            }
+            `;
+
+            document.head.appendChild(style);
+        }
+    });
+    </script>
+{% endblock %}
