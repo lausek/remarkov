@@ -1,0 +1,13 @@
+{% extends "default/index.html.jinja2" %}
+
+{% block head %}
+    {{ super() }}
+    <!-- redirect, as we do not use the module index -->
+    <meta http-equiv="Refresh" content="0; url='/docs/remarkov.html'" />
+{% endblock %}
+
+{% block body %}
+    <div style="padding: 100px">
+        <h1>Redirecting ...</h1>
+    </div>
+{% endblock %}

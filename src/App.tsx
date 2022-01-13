@@ -21,7 +21,7 @@ import React, { useState } from "react";
 const config = {
   links: {
     github: "https://github.com/lausek/remarkov",
-    docs: "https://github.com/lausek/remarkov",
+    docs: "/docs/remarkov.html",
   },
 };
 

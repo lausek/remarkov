@@ -1,5 +1,16 @@
 {% extends "default/module.html.jinja2" %}
 
+{% block favicon %}
+    <!-- IE -->
+    <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/lausek/remarkov/gh-pages/public/favicon.ico" />
+    <!-- other browsers -->
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/lausek/remarkov/gh-pages/public/favicon.ico" />
+{% endblock %}
+
+{% block nav_title %}
+    <img src="https://raw.githubusercontent.com/lausek/remarkov/gh-pages/public/logo192.png" class="logo" alt="project logo"/>
+{% endblock %}
+
 {# redeclare this block as we do not use the module index #}
 {% block module_list_link %}
     {% set parentmodule = ".".join(module.modulename.split(".")[:-1]) %}
