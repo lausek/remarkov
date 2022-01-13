@@ -1,6 +1,14 @@
 # ReMarkov Website
 
 
+## Rebuild site
+
+``` bash
+npm run build
+rm -rf docs/
+mv build/ docs/
+```
+
 ## Update Documentation
 
 ``` bash
