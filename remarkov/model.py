@@ -228,8 +228,7 @@ class Model:
         """
 
         stream = self._generate_stream()
-        for _ in range(word_amount):
-            yield next(stream)
+        return (next(stream) for _ in range(word_amount))
 
     def generate(
         self, word_amount: int = DEFAULT_GENERATE_WORD_AMOUNT
