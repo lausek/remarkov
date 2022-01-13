@@ -16,12 +16,13 @@ import { deepMerge } from "grommet/utils";
 
 import Examples from "./sections/Examples";
 import HowItWorks from "./sections/HowItWorks";
-import React, { useState } from "react";
+import { useState } from "react";
+
 
 const config = {
   links: {
     github: "https://github.com/lausek/remarkov",
-    docs: "/docs/remarkov.html",
+    docs: "https://lausek.eu/remarkov/docs/remarkov.html",
   },
 };
 

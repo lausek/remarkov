@@ -1,4 +1,4 @@
-import { Box, Heading, RangeInput, Spinner, Stack, Text } from "grommet";
+import { Box, Heading, RangeInput, Text } from "grommet";
 import { useEffect, useState } from "react";
 import "./Examples.css";
 import exampleText from "./ExampleText.json";

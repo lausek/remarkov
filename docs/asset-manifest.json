@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/remarkov/static/css/main.e9700052.css",
-    "main.js": "/remarkov/static/js/main.f404e6ef.js",
+    "main.js": "/remarkov/static/js/main.e107febb.js",
     "index.html": "/remarkov/index.html",
     "main.e9700052.css.map": "/remarkov/static/css/main.e9700052.css.map",
-    "main.f404e6ef.js.map": "/remarkov/static/js/main.f404e6ef.js.map"
+    "main.e107febb.js.map": "/remarkov/static/js/main.e107febb.js.map"
   },
   "entrypoints": [
     "static/css/main.e9700052.css",
-    "static/js/main.f404e6ef.js"
+    "static/js/main.e107febb.js"
   ]
 }
