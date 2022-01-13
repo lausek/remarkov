@@ -1,0 +1,44 @@
+{% extends "default/module.html.jinja2" %}
+
+{% block module_list_link %}
+{% endblock %}
+
+<style>
+
+    {% block style_theme %}
+        {#
+        We can optionally enable dark mode depending on the user's preferences:
+        {{ super() }}
+        @media (prefers-color-scheme: dark) {
+        #}
+        :root {
+            --pdoc-background: #212529;
+
+            --text: #f7f7f7;
+            --muted: #9d9d9d;
+            --link: var(--accent2);
+            --link-hover: red;
+            --code: #333;
+            --active: #555;
+
+            --accent: #343434;
+            --accent2: #f91f1f;
+
+            --nav-hover: rgba(0, 0, 0, 0.1);
+            --name: var(--text);
+            --def: orange;
+            --annotation: #00c037;
+        }
+        {# } #}
+    {% endblock %}
+
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded"), function () {
+    const theme = localStorage.getItem("theme");
+    if(theme === "light") {
+
+    }
+});
+</script>
