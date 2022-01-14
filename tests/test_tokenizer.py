@@ -1,3 +1,5 @@
+import pytest
+
 from remarkov.tokenizer import create_ngram_tokenizer, default_tokenizer
 
 
@@ -64,3 +66,8 @@ def test_ngram_tokenizer_padding():
     ngram3_tokenizer = create_ngram_tokenizer(3)
     token_stream = ngram3_tokenizer("AaBBcde")
     assert ["AaB", "Bcd", "e  "] == list(token_stream)
+
+
+def test_ngram_invalid_length():
+    with pytest.raises(AssertionError):
+        create_ngram_tokenizer(0)

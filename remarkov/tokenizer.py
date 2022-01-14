@@ -32,6 +32,8 @@ def token_to_uppercase(token: str) -> str:
 
 
 def create_ngram_tokenizer(n: int) -> Callable[[str], TokenStream]:
+    assert 0 < n, "n must be at least 1"
+
     def ngram_tokenizer(text: str):
         for offset in range(0, len(text), n):
             ngram = text[offset : offset + n]
