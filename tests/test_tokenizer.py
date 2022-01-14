@@ -1,4 +1,4 @@
-from remarkov.tokenizer import default_tokenizer
+from remarkov.tokenizer import create_ngram_tokenizer, default_tokenizer
 
 
 def test_default_tokenizer_empty_input():
@@ -46,3 +46,21 @@ def test_default_tokenizer_stripping_spaces():
 def test_default_tokenizer_remove_newline():
     token_stream = default_tokenizer("A\nB\n\nC\n\r\nD")
     assert ["A", "B", "C", "D"] == list(token_stream)
+
+
+def test_ngram_tokenizer():
+    ngram1_tokenizer = create_ngram_tokenizer(1)
+    token_stream = ngram1_tokenizer("AbcdEf")
+    assert ["A", "b", "c", "d", "E", "f"] == list(token_stream)
+
+
+def test_ngram2_tokenizer():
+    ngram2_tokenizer = create_ngram_tokenizer(2)
+    token_stream = ngram2_tokenizer("AbcdEf")
+    assert ["Ab", "cd", "Ef"] == list(token_stream)
+
+
+def test_ngram_tokenizer_padding():
+    ngram3_tokenizer = create_ngram_tokenizer(3)
+    token_stream = ngram3_tokenizer("AaBBcde")
+    assert ["AaB", "Bcd", "e  "] == list(token_stream)
