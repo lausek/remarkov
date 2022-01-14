@@ -62,6 +62,9 @@ Publishing is done like this (don't forget to bump the version in `setup.py`):
 ``` bash
 pip3 install twine # optional
 
+git tag -a <version>
+git push --tags
+
 python3 setup.py sdist bdist_wheel
 twine check "dist/*"
 twine upload "dist/*"
