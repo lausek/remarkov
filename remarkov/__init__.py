@@ -1,12 +1,11 @@
 from typing import Callable, Optional
 from remarkov.model import Model
 from remarkov.types import Tokenizer
-from remarkov.tokenizer import default_tokenizer
 
 
 def create_model(
     order: int = 1,
-    tokenizer: Tokenizer = default_tokenizer,
+    tokenizer: Optional[Tokenizer] = None,
     before_insert: Optional[Callable[[str], str]] = None,
 ) -> "Model":
     """
@@ -16,8 +15,11 @@ def create_model(
     By default, remarkov will tokenize the sentence by words and punctuation. If this is not desired, you are free to provide a custom tokenizer.
     Each token is transformed using the `before_insert` callback before a token is added to the chain.
     """
-
     from remarkov.model import Model
+    from remarkov.tokenizer import default_tokenizer
+
+    if not tokenizer:
+        tokenizer = default_tokenizer
 
     return Model(
         order=order,

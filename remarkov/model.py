@@ -97,11 +97,11 @@ class Model:
     def __init__(
         self,
         order: int = 1,
-        tokenizer: Tokenizer = default_tokenizer,
+        tokenizer: Optional[Tokenizer] = None,
         before_insert: Optional[Callable[[str], str]] = None,
     ):
         self.order = order
-        self.tokenizer = tokenizer
+        self.tokenizer = tokenizer if tokenizer else default_tokenizer
         self.before_insert = before_insert
 
         self.transitions = Transitions()
