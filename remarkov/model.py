@@ -178,7 +178,7 @@ class Model:
         last_removed_token, state = None, self._create_initial_state(token_stream)
 
         for token in token_stream:
-            key: Tuple[Token] = tuple(state)
+            key: State = tuple(state)
 
             token = self._trigger_before_insert(token)
             self.transitions.declare(key, token)

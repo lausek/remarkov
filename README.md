@@ -57,6 +57,12 @@ git checkout gh-pages
 pdoc -t pdoc/template -o public/docs <path_to_remarkov_module>
 ```
 
+Run type checks using [mypy](https://github.com/python/mypy):
+
+``` bash
+mypy -p remarkov
+```
+
 Publishing is done like this (don't forget to bump the version in `setup.py`):
 
 ``` bash
