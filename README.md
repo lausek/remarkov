@@ -71,6 +71,7 @@ pip3 install twine # optional
 git tag -a <version>
 git push --tags
 
+python3 setup.py clean --all
 python3 setup.py sdist bdist_wheel
 twine check "dist/*"
 twine upload "dist/*"
