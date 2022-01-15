@@ -15,12 +15,12 @@ def build_argument_parser():
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--url", type=str, help="URL to the zipped dataset")
-    parser.add_argument("--path", type=str, help="Path to the zipped dataset")
+    parser.add_argument("--path", type=str, help="path to the zipped dataset")
     parser.add_argument(
-        "--order", type=int, default=4, help="Generate one sample from 1 till `order`"
+        "--order", type=int, default=4, help="generate one sample from 1 till `order`"
     )
     parser.add_argument(
-        "--samples", type=int, default=4, help="Amount of samples per configuration"
+        "--samples", type=int, default=4, help="amount of samples per configuration"
     )
 
     return parser

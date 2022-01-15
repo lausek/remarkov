@@ -24,6 +24,9 @@ def create_build_parser(subcommands):
         "--order", type=int, default=1, help="changes the order of the Markov chain"
     )
     parser.add_argument(
+        "--ngrams", type=int, nargs="?", help="tokenizes the input text into n-grams"
+    )
+    parser.add_argument(
         "--normalize",
         action="store_true",
         default=False,
@@ -74,8 +77,13 @@ def add_text_from_file(remarkov: Model, file_name: str):
 
 
 def run_build(args, stream: TextIO) -> str:
+    from remarkov.tokenizer import create_ngram_tokenizer
+
+    tokenizer = create_ngram_tokenizer(args.ngrams) if args.ngrams else None
     before_insert = token_to_lowercase if args.normalize else None
-    model = create_model(order=args.order, before_insert=before_insert)
+    model = create_model(
+        order=args.order, tokenizer=tokenizer, before_insert=before_insert
+    )
 
     if args.files:
         for file_name in args.files:

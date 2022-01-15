@@ -105,3 +105,16 @@ def test_building_no_compress_default():
 def test_building_compress():
     output = run_command(args=["build", "--compress"], stream=StringIO(SOURCE))
     assert "\n" not in output
+
+
+def test_building_ngrams():
+    import json
+
+    output = run_command(args=["build", "--ngrams", "3"], stream=StringIO(SOURCE))
+    model = json.loads(output)
+
+    assert model["transitions"]
+
+    for transition in model["transitions"]:
+        assert all(map(lambda token: 3 == len(token), transition["state"]))
+        assert all(map(lambda token: 3 == len(token), transition["tokens"]))

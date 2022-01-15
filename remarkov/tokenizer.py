@@ -32,6 +32,10 @@ def token_to_uppercase(token: str) -> str:
 
 
 def create_ngram_tokenizer(n: int) -> Callable[[str], TokenStream]:
+    """
+    Tokenize the input text into n-grams of length `n`. Short tokens are padded with whitespace.
+    """
+
     assert 0 < n, "n must be at least 1"
 
     def ngram_tokenizer(text: str):
