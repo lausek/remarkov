@@ -136,6 +136,7 @@ def scrape_queue(initial_pages: list, limit: int, language: str, tee: bool):
     import time
 
     page_name_scrape_queue = [*initial_pages]
+    page_name_scraped = []
     scraped_pages = 0
 
     while scraped_pages < limit:
@@ -144,6 +145,14 @@ def scrape_queue(initial_pages: list, limit: int, language: str, tee: bool):
         except IndexError:
             # no more pages to scrape.
             break
+
+        if ":" in page_name:
+            info(f"{page_name} is Wikipedia stuff. Skipping.")
+            continue
+
+        if page_name in page_name_scraped:
+            info(f"{page_name} was already scraped. Skipping.")
+            continue
 
         info(f"Loading page {page_name} ...")
         page = load_page(page_name, language=language)
@@ -160,7 +169,9 @@ def scrape_queue(initial_pages: list, limit: int, language: str, tee: bool):
 
         # push some mentioned pages into the scrape queue.
         page_name_scrape_queue.extend(page.related_pages[:4])
+        page_name_scraped.append(page_name)
         scraped_pages += 1
+
         # sleep a little.
         sleep_time = random.randint(0, 2)
         info(f"Sleeping for {sleep_time} seconds.")
