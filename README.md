@@ -2,7 +2,7 @@
 
 <img align="left" src="https://raw.githubusercontent.com/lausek/remarkov/gh-pages/public/logo192.png" height="120px" />
 
-**ReMarkov** is a Python library for generating text from preexisting samples using [Markov chains](https://en.wikipedia.org/wiki/Markov_chain).
+**ReMarkov** is a Python library for generating text from existing samples using [Markov chains](https://en.wikipedia.org/wiki/Markov_chain).
 You can use it to customize all sorts of writing from birthday messages, horoscopes, Wikipedia articles, or the utterances of your game's NPCs.
 Everything works without an omnipotent *"AI"* - it is dead-simple code and therefore fast.
 
