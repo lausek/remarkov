@@ -18,7 +18,6 @@ import Examples from "./sections/Examples";
 import HowItWorks from "./sections/HowItWorks";
 import { useState } from "react";
 
-
 const config = {
   links: {
     github: "https://github.com/lausek/remarkov",
@@ -54,7 +53,8 @@ const PageFooter = () => {
       <Text size="small">
         2021
         <Anchor label="ReMarkov" href={config.links.github} />
-        | Made by <Anchor label="lausek" href="https://lausek.eu" /> with <Anchor label="Grommet" href="https://v2.grommet.io/" />.
+        | Made by <Anchor label="lausek" href="https://lausek.eu" /> with{" "}
+        <Anchor label="Grommet" href="https://v2.grommet.io/" />
       </Text>
     </Footer>
   );
@@ -123,10 +123,11 @@ type ThemeMode = "light" | "dark";
 const useLocalStorage = (
   name: string
 ): [ThemeMode, (themeMode: ThemeMode) => void] => {
-  let currentTheme: ThemeMode = "light";
-  try {
-    currentTheme = localStorage.getItem(name) as ThemeMode;
-  } catch {}
+  let currentTheme: ThemeMode = localStorage.getItem(name) as ThemeMode;
+
+  if (currentTheme === null) {
+    currentTheme = "light";
+  }
 
   const [themeMode, setThemeModeLive] = useState(currentTheme);
   const setThemeMode = (themeMode: ThemeMode) => {
@@ -153,7 +154,7 @@ function App() {
         <Box fill="horizontal" />
 
         <Button onClick={toggleTheme}>
-          {themeMode === "light" ? <Sun /> : <Moon />}
+          {themeMode === "light" ? <Moon /> : <Sun />}
         </Button>
 
         <Nav direction="row">
@@ -166,11 +167,13 @@ function App() {
         </Nav>
       </Header>
 
-      <Main>
-        <Introduction />
-        <Examples />
-        <HowItWorks />
-        <JumpRightIn />
+      <Main align="center">
+        <Box width="xlarge">
+          <Introduction />
+          <Examples />
+          <HowItWorks />
+          <JumpRightIn />
+        </Box>
       </Main>
       <PageFooter />
     </Grommet>

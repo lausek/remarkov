@@ -1,9 +1,8 @@
 # ReMarkov Website
 
-
 ## Rebuild site
 
-``` bash
+```bash
 npm run build
 rm -rf docs/
 mv build/ docs/
@@ -11,6 +10,6 @@ mv build/ docs/
 
 ## Update Documentation
 
-``` bash
+```bash
 pdoc -t pdoc/template -o public/docs <path_to_remarkov_module>
 ```

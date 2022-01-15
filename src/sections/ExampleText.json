@@ -1,26 +1,187 @@
 {
-    "Article": {
-        "1": ["Article 1", "Article 1 second"],
-        "2": ["Article 2", "Article 2 second"],
-        "3": ["Article 3", "Article 3 second"],
-        "4": ["Article 4", "Article 4 second"]
-    },
-    "Birthday": {
-        "1": ["Birthday 1", "Birthday 1 second"],
-        "2": ["Birthday 2", "Birthday 2 second"],
-        "3": ["Birthday 3", "Birthday 3 second"],
-        "4": ["Birthday 4", "Birthday 4 second"]
-    },
-    "Horoscope": {
-        "1": ["Horoscope 1", "Horoscope 1 second"],
-        "2": ["Horoscope 2", "Horoscope 2 second"],
-        "3": ["Horoscope 3", "Horoscope 3 second"],
-        "4": ["Horoscope 4", "Horoscope 4 second"]
-    },
-    "Utterance": {
-        "1": ["Utterance 1", "Utterance 1 second"],
-        "2": ["Utterance 2", "Utterance 2 second"],
-        "3": ["Utterance 3", "Utterance 3 second"],
-        "4": ["Utterance 4", "Utterance 4 second"]
+  "Car Reviews": {
+    "source": "en-car-reviews.txt",
+    "samples": {
+      "1": [
+        "Comfortable ride, ~24mpg combined) and not THAT hard and now as well designed & listening to cure the roads! Took delivery on the 2007, but keep out. Value Edition with its the honda accord, great job.",
+        "E- class and problems at 65 mph when accelerating from it's bad L engine itself yet. The autostick option). Has a pigeon pooped on the breaks changed along with my 1st one.",
+        "If you're an all the message, the interior comfort and configurability is great sight lines on a few months. I have 4 l motor gives feeling that is solid running it straight hours..",
+        "Had an unbelievable.. After Driving this with it replaced.",
+        "The only had a built. The car within first heard that is you had the right on - approx 100 miles on 3 series. It's a low build quality this with the nissan models and several competitors.",
+        "I like my passion. Love this car value, which in ages. I've heard the car at about."
+      ],
+      "2": [
+        "I've always driven Audi's, Passats and Lancias in Europe). My wife & purchased a different and more. Good car overall feels well-built and comfortable 40/20/40 seats.",
+        "I normally drive 125 miles everyday (city) has been fixed in the back seat. I absolutely love my Nissan Versa or Sentra you will fit you! Fun, fun to drive at 4000-6000 ft elevation.",
+        "Although the backseat due to high gas prices, and at just about a year. Safety is a \" spirited \" leaves some room to spare (w/o 4WD) to our daughter in and increasingly impressed as well as the wagon after waiting for 3 mo. (Only rated for.",
+        "But I second the back with the occational need for your buck. Considering the fact that you get in and out! I bought a cheap Japanese one.",
+        "Exterior is still 32 mpg on premium. I am 6 feet 240 pounds and the engine and nice Boss sounds. Mileage on highway beside big rigs have.",
+        "Go test drive the vehicle is very smooth. The new larger 335i interior fits me perfect. 99% satisfied with its standard options and combinations."
+      ],
+      "3": [
+        "Drives well but sometimes your head bounces on the headrest between us so many other \" sports cars \" anyway. Best car I've ever owned! I just bought after finishing college.",
+        "The CX7 has standard features such as flimsy door handles and lower rocker moldings are added for more presence and refinement. Overall - I am 6'2 \". I have owned this car for 21 months and 30, 000 miles on it, but here again, I would still recommend this car.",
+        "Still, this car/truck combination is versatile, and looks great. I love the car. The overall mpg over 2200 miles, I'm finding all of that flew out the window and there are neat features which surprising are normally found in higher-priced vehicles.",
+        "Maintenance on the first day it ate fuel, the Prius was the same mileage my CX-7 got and that thing is loud and has no rattles or squeaks. It's driving performance is amazing, and the 2. 7 motor in the 1/2 ton GMC and Tundra but I picked up the van with gas.",
+        "We leased our Sportage in Feb. What a great car. I'm 6'2 and have plenty room for legs.",
+        "Very quality automobile, does not need it. This severe defect is not immediately noticeable during a short test drive doesn't tell you the flat black on red will turn many heads. I love it."
+      ],
+      "4": [
+        "ah, it has a lot of cargo for our family visits. Had the car for 45 days. After a year and half on the road, but I'm used to driving sporty cars and was surprised by the amount of shoulder room throughout the car.",
+        "I own a 2005 BMW 3 series and Audi A4 I drove. The 6MT shifts better than any BMW, Porsche or Mercedes. It's also very roomy inside and the trunk space seems very comparable.",
+        ".. I have a white one, black interior, fully loaded SV Sport (corners like its on rails and runs like a clock but at half price.",
+        "The vehilce is tight and rides very well. You get a lot of car for not a lot of space and it is priced better than the competition. I am sold on Toyota!",
+        "#1, We have two children and will need to carpool in the fall. The kids love the rear ent system. My gripe is with the nav system.",
+        "I honestly love driving my Tucson, Its a fun car to drive, quite, and best power an good stability So far this has been a great little commuter car, but the Escape Hybrid turned me around. It's brilliant. With the 4WD it goes anywhere I want including rough dirt roads and deep snow."
+      ]
     }
+  },
+  "Horoscopes": {
+    "source": "en-horoscopes.txt",
+    "samples": {
+      "1": [
+        "The answers are much. Wherever you could hold for you start with employers know it yourself to play the sort of impression that someone you can only affect your mind and do today, but it. Cosmic activity in full of it and set your money matter how you have so approach will immediately back at odds with words for what it takes to make them now.",
+        "Ignore them squarely in a matter how many. Don\u2019t let them up until you need to your successes, is invariably more determined you let worries behind everything. A friend.",
+        "With the courage to put on what other bring you believe are doing your sign at the new moon will continue to be worth taking advantage of mistakes they have so there is likely you are you will make you let your head down. Today\u2019s full moon in the things in the more you are concerned, thanks in reality. But will drift apart to lighten considerably.",
+        "On the fact no one side don\u2019t act on whether the time to genuinely sorry for delays and you will return and your chart there is moving in your life. People you. Whatever challenges that you?",
+        "Is it. The current full of the moment that is the most will say sounds genuine and colleagues know that comes along the chance to worry that matters worse. What looks like a new insights but for you socialize today.",
+        "Do you to the simple and other reward you choose to impress. Do what you don\u2019t have been cut corners or a sure you might scare people will rear its smile to put the influence events of loved one of Pisces makes mistakes. Just be replaced."
+      ],
+      "2": [
+        "You are in an adventurous mood at the moment, and tomorrow. Leave your doubts so early they are clearly reluctant to cross swords with a certain amount of confidence and all you need to say may be you need to be going through a lot! Do you know all the chances are they are taunting you like and get things done then it\u2019s a risk when everyone is happy to give ground as well as the new week gets under way.",
+        "You enjoy being one of your chart that deal with some serious money over the next 24 hours. Be careful what you think it you must resist the more freedom. Both in your sign you need to ask yourself what it takes to succeed.",
+        "This is potentially one of its retrograde phases if you get out into the career area of your life for the remainder of the world to rights \u2013 your talents wisely. Money worries and focus on the same old ways and cannot go back to what others say may sound you must make sure that your input makes a difference. Which is nice in return.",
+        "Think before you start over rivals and enemies are saying about you? No, really, so visualize what it takes to keep yourself interested by varying your routine today and tomorrow will make matters worse. Strive for excellence in everything you create subconscious ripples that attract downbeat people and doing your fair share of the bigger picture.",
+        "At the very first thing you need to find a quiet place where you can pretend that you might just make a small change in ways you had dealt with immediately. The planets warn you are strongly advised to take chances. If that\u2019s the key to success.",
+        "People you work on your side in negative events have had the guts to trust them after all, don\u2019t lose sight of the important things, but it is hard for you. Others will put everything else. Deep down you know how you react emotionally to what scares you won\u2019t be long before your mind already and if you did not want to prove the doubters you have to be having it."
+      ],
+      "3": [
+        "Let your intuition guide you. Don\u2019t leave it any longer \u2013 let them know you don\u2019t work too hard and straining either your mind or your body, or your mind, but will you answer? If you know what you are talking about.",
+        "Be blunt if you have to do and forget about the past and make room for new opportunities. You may be the planets suggest you will at some stage today you will be embarrassed. If there is someone you want to get involved in petty disputes today or tomorrow you will enjoy what you are talking about.",
+        "There is no point feeling sorry for yourself at the moment and things are likely to be further away than ever. However much you care for nothing but you will do better, both financially and personally. Others can wallow in self-pity if they want to know what you\u2019ve been up to.",
+        "What seems such a difficult problem now will look ridiculously easy as from tomorrow, thanks to a new understanding, maybe even inferior, so don\u2019t. If you have any skeletons in your closet \u2013 and you also need to reward yourself with something good afterwards. You seem to be more even-handed, or at least ignore them.",
+        "Venus, planet of communication but also deception and its position today suggests you can\u2019t really trust what you are, the planets indicate you will get your mind moving a bit too reserved. The good news is you will share in the spoils \u2013 but they have no right to bring you down with their negative outlook and before you know it must be done \u2013 then do that to the exclusion of everything else. Dollars and cents are important, of course, you will come through unscathed and that you agree with every word they say for no good reason.",
+        "But you also have serious things to do you favors. Should you be nice to you today. Fortunately, when Venus moves into your opposite sign of Sagittarius urges you to recognize that you do not even respect."
+      ],
+      "4": [
+        "You will find it hard to live within your means that is a sure sign you are doing the right thing then maybe you should give it a miss. Get back on good terms with Uranus, planet of genius, on your birthday this year you will be looking for excuses to silence you. Some people like you and genuinely want to help.",
+        "There will be kind words from people in positions of power. Make them see sense. As Mercury moves into the money area of your chart tomorrow there is sure to be good news of some kind.",
+        "If there is something important that needs to be broken but how do you actually do that? What happens over the next 48 hours. Only by taking a realistic attitude to your current situation, both professional and financial, will you come to a new understanding with someone you have not seen for a while comes back into your life either today or tomorrow, but will you wise up before you have wasted an entire day\u2019s worth of time and energy.",
+        "You may not be entirely happy about it. The cosmic picture is slowly but surely all coming right for you and over the next seven days and you may even get more done. You may want to change things around a bit today but the planets warn you could take it too far today you might tempt certain people to be obstructive.",
+        "If, however, you let a worm of doubt creep into your mind you may fall short of what you expect of yourself. This will be a rather quiet time by your standards but it will lay the foundations for future success. This is a good time for travel and social activities but you fear you won\u2019t be good enough then find later that no one is better.",
+        "It may feel as if time is running out, that if you don\u2019t act now you will never get it \u2013 not because they don\u2019t want to hear you must not take too much out of you. You may think that a change of direction is not needed, despite what some people may say to the contrary there is something about your current situation that you do not have to take from somebody else. Everyone can win."
+      ]
+    }
+  },
+  "Hotel Reviews": {
+    "source": "en-hotel-reviews.txt",
+    "samples": {
+      "1": [
+        "Adjacent pub attached to the nicest I stayed at home and ambience was only assume he was necessary to set us they retain an outside in all of a nice. what a large and efficient, clean &amp; a lot of place. There is pet friendly (just returned from an OYSTER card cost us.",
+        "The room, that the whole time to staying there-in a cab driver. no flywire to Market. Our 3 night via e-mail from home with better to anyone.",
+        "Crowding on the air conditioner is within easy to have an old rooms was huge with its location to set the event you'll see if you are all day. For $188 for Chicago to sleep at a bit far as well..",
+        ", but couldn't have visited RED THEATRE (but not want to get a nightmare, due to bring the best to use them, like a great kosher restaurant food which gave me gave me at Extended Stay Again, well-maintained ($5. breakfast is a very good, except for some of eggs made in Chicago touch. They have never did seem the afternoon.",
+        "There was a problem communicating with most of a cheap and a minibus not quite good enough about 110usd).. Always a hub (12, took 20mins to Delhi.",
+        "At $199 we thought. I spent 2 minutes! From my stay here for breakfast, there was exceptional nice appliances, dinner at the room w/ a telephone rings and the noise did not been a local young kids."
+      ],
+      "2": [
+        "Phones did not borther me as I was excited. I am in SF, neighborhood noise was the Keynote Speaker for the hotel. Nice kitchenette but no kleenex box.",
+        "We ate breakfast at Paul's patisserie, I would rate my one buddy asked where I picked one. It is in a very cute and charming. I refused to sign off on the bed was comfortable.",
+        ".. there are parts of the furniture could be.",
+        "We then found a &quot;cyber bar&quot; on side facing away; the other required us to our room. The location in an older hotel ON the sidewalk. It's great.",
+        "After a couple minutes) but there's a private house. Guy helped to make you at competitive prices (basically the same time. This resort is a standard room on the 3/F.",
+        "Not all rooms as no other complaints including 1 woman who said I was at our destination each day, unlike a conventional hotel 2m away at the bathroom floor after complaining twice and no comforter cover) -No WiFi as advertised (Note: A. or having to move and had everything we needed anything. Highly recommend the Ascott itself is of palatial dimensions with the full bill to be quite heavy at times, as it is the tallest one 'burj dubai'."
+      ],
+      "3": [
+        "driver waits in car park, while you visit, paying entrance fees. erspective of price, and photographs of the one room and put in a rollaway bed, as we got there and saw how horrible and dirty the outside of the hotel and found it very interesting. But taxis are cheap and easily accesible.",
+        "The tub is incredibly long, which was helpful. The reception area is very clean with a very friendly staff and clean rooms and good service. Great Location We had such a good location for getting around.",
+        "We took the shuttle to the airport, wich make it possible to make sure we had all the basics, rooms are not huge, meaning its personalized, room's are very contemporary and you will be spared the traffic noise. The location is in the lobby and we found that we could order room service which wasn't to good, the landscaping nice, did I mention there's a private entrance into the grounds of the Westin. Also well equiped with TV, sofa, chairs, table, TV with 39 cable channels, temperature control, and fine bathrooms with excellent showers, baths and soft towels.",
+        "My fiance wouldn't let me leave the room, but rather limited channel choices. There is some street noise in the hallways upstairs we even had to call the owner's mobile, again no big deal, but I'm sure there are nicer places in Vegas in this price range, its 35 dirhams from the airport Good Hotel I stayed at the Bay Bridge, all you need, and no windows! After inspecting the room further we found rat droppings on the nightstand / beside the beds - there was only crockery and utensils for 2 persons.",
+        "Rooms were clean, the bed was horrendous - the linen was so dirty, people staying there, but it doesn't have any of the casinos. You don't have to worry about either. this is not something I would expect to get much needed rest so she could recover.",
+        "! Avoid at all costs. terrible location, poor food, poor service would not stay there again."
+      ],
+      "4": [
+        "the studio bed was VERY soft - and tho it was a queen, my husband and two sons (13 and 11) stayed at the Ascott for a week to attend the Bears vs Falcons. Same great service. This is my third stay at the Best Western Nellis.",
+        ". we were in Agra at the Taj Mahal!).",
+        ") lovely hotel stayed here for 5 days and our stay was excellent...",
+        "Better that you'd expect and the best value the area This hotel is way nicer that you would expect in a hotel, e. g breakfast, internet, airport pick-up are expensive and best avoided. Oh here's a tip, the laundry guy comes at 9am every morning to ask if you need laundry done, if you want to go shopping or go to the beach instead.",
+        "The SHRM Conference which attracted over 22, 000 attendees was across the street and you could just about tell what time it was based on the traffic noise, which was part of the show or if this was real. I love the Greek Isles. &quot;The 305 Las Vegas&quot;.",
+        "Worse thing is they say I can't even keep it for a night as his guests. Although the hotel feels run down and damaged, and although I am at the first floor right next to the noisy lift shaft which kept going all night. Our bed was really incredible."
+      ]
+    }
+  },
+  "Npc": {
+    "source": "en-npc.txt",
+    "samples": {
+      "1": [
+        "You'll want. And rescued a swoop engine accelerator pads you'll be taken advantage of some Pazaak? You're probably see our information retrieval and I am glad it's nothing to watch this time now, ah.",
+        "I'm just explain myself whining! Oh? Huh, really like for the bottom of Freedon Nadd.",
+        "Objection: the Beks. Thank you wouldn't recognize the Beks don't trust her Battle Meditation allowed to you, however, just say they aren't much by me. Okay, thanks, I have been in the Star Forge.",
+        "I want now. Hahah- *cough* *cough* You will cut off, but perhaps we dwelt beneath you can any trouble! Okay, but now a Jedi who breaks, human chose to break your own people are an exception of generations, but we're not popular with.",
+        "I believe her enemies! I wish you? Of course.",
+        ". The kath hounds, maybe there is the Sith, Carth? What is still alive, by his sister."
+      ],
+      "2": [
+        "I know what will happen next is...",
+        "But I don't, don't ya think? Hm..",
+        "You are very slow, and now I see you are interested in the game is paused you can enter it. I think. You not come out the Republic is too great.",
+        "Then I suggest you turn me in your shoes. Do not ask them yourself? I.",
+        ".. Everyone wanted just to ask some locals.",
+        "Have you news of your accomplishment. Disgusting slaver! Why did Brejik leave the city."
+      ],
+      "3": [
+        "Please, just leave me alone...",
+        "Heh heh. Well I might be glad to get rid of these creatures is an abomination that must be cleansed with fire! Fire generated from a sterling example of weaponcraft such as this.",
+        ".. we gotta.",
+        "Is this some kind of observer? Nonsense. Have I passed your test!",
+        "! You made your wishes clear to me the last time you were here to step in and help us, you turn on him? This is Sith space now, and give this to them now!",
+        "I'm not allowed to even look at what you've got! Go away. There's nothing you can do any better than they are, they must be closer."
+      ],
+      "4": [
+        "Will we be good friends, you think? I strived many years to hone my power until I was able to drag you away from our crash site in all the confusion, and I stumbled onto this abandoned apartment. By the time the Sith arrived on the scene we were long gone.",
+        "Take my head, Czerka filth. You won't get away with this lie. I swear, I don't know about that.",
+        "That is bad form. I do nothing. He's a fine leader, you said.",
+        "Study. Learn. Wait.",
+        "It's just that I learned a long time ago. So did Mother, for that fact. Please.",
+        "Right, sure. I understand. We'll go as soon as possible."
+      ]
+    }
+  },
+  "Wiki Blockchain": {
+    "source": "en-wiki-blockchain.txt",
+    "samples": {
+      "1": [
+        "There exist, and direction \" absolute ban \". 0. Alexander Vinnik, the one-time pad, and write a hash functions such as the \".",
+        "Pre-mining means for weekdays. On 13. 11, which wallets to Make a transition to $31.",
+        "For example, though the system's security perspective to $998 by the world's first steps taken in practice, that currency, fast and can have Baidu's internal auditors to break into unintelligible form of deposit insurance to miners obtain new blocks, the data stored in video and leaf nodes under the rate of the Ethereum protocol could be rewarded by 1 techniques. In 2001, generally. Ethereum blockchain is the hybrid system for this is that it is sold, control 100 contributors worked on cryptoassets and validator (i.",
+        "In both cases the host computer systems, hold \" such as of MD5-like hash algorithm is for verification engine, the legal issues and cryptocurrency exchanges, and fell from May 2018, prices started at the development, as a high energy consumption into carbon footprint. Around the ability to generate an ordinary signature; they are several times by the Enigma machine used tool with a number of justice, an unfounded fad (Stiftung Ethereum Improvement Proposal (ENS) remains unknown to benefit from and David Chaum first big. e.",
+        "In 2015, it tough for implementing digital currencies has argued that trigger the use and drafted its white paper entitled How to the miner has explained the word, activists sued Baidu has diminished and shut down 72% for use. Demonstrating that price by Mutually Suspicious Groups. Note, the concatenation.",
+        "Another popular system. This has been a key. It also identified attacks against cryptocurrency, which runs the runtime environment that their designs brought with Snap Inc."
+      ],
+      "2": [
+        "In 2009, Wired was included by Satoshi Nakamoto in 2008. On 27 August 2021, Baidu announced that it was retired. It originated in a term describing the intersection of the chain.",
+        "The ciphers implemented by better quality examples of cryptographic technology has the advantage of keeping mining economically feasible on commodity hardware, but the sender and receiver can read messages, is called a 51% attack. This is changing and now lives with author Tara Neale, whom he married in 2020. He found the Second Hospital of the words: \" Ethereum \".",
+        "Fenwick trees allow both operations to be updated is limited by the rest of the same single output in the fall of 1993, the Central Bank, the BBC reported that the private key. Keys are important both formally and in another 15 countries, which would lead to a \" power law \" -type graph that helps to visualize the 2000s emergent new media business model. Anderson's article for Wired on this paradigm related to the provincial government to allocate 500 MW to crypto companies for mining include those with inexpensive electricity, and of equal value.",
+        "The United States elections. However, other researchers criticized this analysis, \" yet despite the fact that [it] sounded nice and it had holdings of \u20bf70, 784 worth $2. 7 million worth of bitcoin.",
+        "With public-key systems, one of the network with value in relation to bloggers. Anderson widened the definition of the country. The EVM's instruction set is Turing-complete.",
+        "10 of the Linux distributor Red Hat during 1999\u20132009. Starting from 2011 he was sentenced to nearly eight years in federal prison. Homero Josh Garza, who took over the role of lead developer is Wladimir J."
+      ],
+      "3": [
+        "In many cases, the cryptosystem's structure involves back and forth communication among two or more software components to cooperate despite differences in language, interface, and execution platform \". The company's goal is to fund 100 bitcoin businesses within 2\u20133 years with $10, 000 to $20, 000 for a 6% stake. Investors also invest in bitcoin mining.",
+        "By July 2017, there were two secret scripts, according to Beijing-based research firm Analysys International. It is \" an open, permissionless, or public, blockchain network is that guarding against bad actors is not required and no access control is needed. This means that many in-house blockchain solutions will be nothing more than cumbersome databases.",
+        ".] doesn't really solve any sensible economic problem \". According to Digiconomist, one bitcoin transaction requires about 707.",
+        "Some implementations limit the tree depth using hash tree depth prefixes before hashes, so any extracted hash chain is defined to be valid, it must be signed using the sending account's private key, it is discussing the possibility of working with Facebook, which would allow them to double-spend coins, prevent certain transactions from being verified and prevent other miners from earning income. As of 2021, it maintained that relative position. After the Constantinople upgrade on 28 February 2019, Canadian cryptocurrency exchange Quadriga Fintech Solutions failed with approximately $200 million missing.",
+        "Since then, cryptography has become a widely used form of hash tree. It uses proof-of-stake to reach consensus for transactions\u2014as such there is a top hash (or root hash or master hash). Before downloading a file on a p2p network, in which a secret key is used with the message, but encrypted using a public-key algorithm.",
+        ") are usually employed due to being more cost-effective and feasible to perform in a reasonable amount of time). A cypher, in contrast, is a scheme for changing or substituting an element below such a level (a letter, or a syllable or a pair of algorithms that carry out the encryption and the reversing decryption. The detailed operation of a cipher is controlled both by the algorithm and, in each instance, by a \" key \"."
+      ],
+      "4": [
+        "Its Unicode character is \u20bf. One bitcoin is divisible to eight decimal places. Units for smaller amounts of bitcoin are the millibitcoin (mBTC), equal to bitcoin, and the satoshi (sat), which is needed to decrypt the ciphertext.",
+        "van der Laan, who took over the role on 8 April 2014. Gavin Andresen was the former lead maintainer for the software client. Andresen left the role of lead developer for bitcoin to work on the strategic development of its technology.",
+        "They held $8 billion worth of bitcoin, and made 36 million transactions valued at $72 billion. Bitcoin Core is free and open-source software that serves as a public financial transaction database. A cryptocurrency is a tradable digital asset or digital form of money, built on blockchain technology that only exists online.",
+        "On May 2, 2016, Cyberspace Administration of China (CAC), the top watchdog for China's Internet space, dispatched a team of investigators to Baidu. The case is still ongoing. One report claimed medical advertising makes up for 30% of Baidu's ad revenue, much of which comes from for-profit hospitals that belong to the \" Putian Network \", a collection of hospitals across the country founded by medical entrepreneurs associated with the Putian region of Fujian province.",
+        "According to a survey by the Central American University, the majority of Salvadorans disagreed with using cryptocurrency as a legal tender, and a survey by the Center for Citizen Studies (CEC) showed that 91% of the country prefers the dollar over Bitcoin. As of 2021, it maintained that relative position. After the Constantinople upgrade on 28 February 2019, there were two network upgrades made within a month late in the year: Istanbul on 8 December 2019 and Muir Glacier on 2 January 2020.",
+        "The credentials necessary to spend bitcoins can be stored offline in a number of different ways, from specialized hardware wallets to simple paper printouts of the private key. Contracts are the only type of account which has associated code (a set of functions and variable declarations) and contract storage (the values of the variables at any given time). A contract function may take arguments and may have return values."
+      ]
+    }
+  }
 }

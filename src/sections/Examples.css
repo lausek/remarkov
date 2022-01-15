@@ -1,7 +1,7 @@
 .showcase-select:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .showcase-output {
-    min-height: 200px !important;
+  min-height: 200px !important;
 }
