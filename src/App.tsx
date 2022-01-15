@@ -108,13 +108,13 @@ const JumpRightIn = () => {
       <Box fill="horizontal" align="center">
         <Box direction="row" gap="large">
           <Anchor
-            size="large"
+            size="xlarge"
             label="Docs"
             href={config.links.docs}
             icon={<CatalogOption />}
           />
           <Anchor
-            size="large"
+            size="xlarge"
             label="GitHub"
             href={config.links.github}
             icon={<Github />}

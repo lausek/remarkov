@@ -1,5 +1,14 @@
-import { Anchor, Box, Heading, RangeInput, Tabs, Tab, Text } from "grommet";
-import { useEffect, useState } from "react";
+import {
+  Anchor,
+  Box,
+  Heading,
+  RangeInput,
+  Tabs,
+  Tab,
+  Text,
+  ResponsiveContext,
+} from "grommet";
+import { useContext, useEffect, useState } from "react";
 import "./Examples.css";
 import examples from "./Examples.json";
 
@@ -9,6 +18,8 @@ const ExampleShowcase = () => {
 
   const [selected, setSelected] = useState("Car Reviews");
   const [selectedSource, setSelectedSource] = useState("");
+
+  const size = useContext(ResponsiveContext);
 
   useEffect(() => {
     const choice = (arr: Array<string>) => {
@@ -39,7 +50,7 @@ const ExampleShowcase = () => {
 
       <Box fill="horizontal" direction="column" gap="small">
         <Box
-          round
+          round={size === "small" ? false : "medium"}
           fill
           background="window"
           pad="medium"
