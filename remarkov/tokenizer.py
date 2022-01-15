@@ -1,3 +1,4 @@
+from typing import Callable
 from remarkov.types import TokenStream
 
 PUNCT_TERMINATION = [".", "?", "!"]
@@ -28,3 +29,19 @@ def token_to_lowercase(token: str) -> str:
 
 def token_to_uppercase(token: str) -> str:
     return token.upper()
+
+
+def create_ngram_tokenizer(n: int) -> Callable[[str], TokenStream]:
+    assert 0 < n, "n must be at least 1"
+
+    def ngram_tokenizer(text: str):
+        for offset in range(0, len(text), n):
+            ngram = text[offset : offset + n]
+
+            # if the current ngram is too short, pad it with whitespace.
+            if len(ngram) < n:
+                ngram += " " * (n - len(ngram))
+
+            yield ngram
+
+    return ngram_tokenizer
