@@ -48,7 +48,7 @@ def generate_samples(amount: int, order: int, text: str) -> List[str]:
     model = create_model(order=order)
     model.add_text(text)
 
-    return [model.generate().text() for _ in range(amount)]
+    return [model.generate_sentences().text() for _ in range(amount)]
 
 
 def build_samples(path: str, max_order: int, samples_per_model: int) -> dict:
