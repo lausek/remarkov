@@ -28,6 +28,7 @@ const config = {
 const theme = deepMerge(grommet, {
   global: {
     colors: {
+      "accent-1": "red",
       brand: "#f91f1f",
       background: {
         dark: "#222",
@@ -36,6 +37,10 @@ const theme = deepMerge(grommet, {
       "graph-0": {
         light: "dark-1",
         dark: "light-4",
+      },
+      window: {
+        light: "light-3",
+        dark: "dark-1",
       },
     },
     font: {
@@ -46,6 +51,8 @@ const theme = deepMerge(grommet, {
     color: "brand",
   },
 });
+
+console.log(theme);
 
 const PageFooter = () => {
   return (
@@ -77,7 +84,7 @@ const Introduction = () => {
           round
           direction="row"
           gap="small"
-          background="light-2"
+          background="window"
           pad="medium"
           width="large"
         >

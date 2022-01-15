@@ -1,31 +1,14 @@
-import { Box, Heading, RangeInput, Text } from "grommet";
+import { Anchor, Box, Heading, RangeInput, Tabs, Tab, Text } from "grommet";
 import { useEffect, useState } from "react";
 import "./Examples.css";
-import exampleText from "./ExampleText.json";
-
-interface ExampleShowcaseSelectProps {
-  name: string;
-  value: string;
-  onClick: (name: string) => void;
-}
-
-const ExampleShowcaseSelect = (props: ExampleShowcaseSelectProps) => {
-  return (
-    <Box
-      className="showcase-select"
-      pad="small"
-      background={props.name === props.value ? "brand" : ""}
-      onClick={() => props.onClick(props.name)}
-    >
-      {props.name}
-    </Box>
-  );
-};
+import examples from "./Examples.json";
 
 const ExampleShowcase = () => {
   const [order, setOrder] = useState("1");
   const [output, setOutput] = useState("This is the output text.");
+
   const [selected, setSelected] = useState("Car Reviews");
+  const [selectedSource, setSelectedSource] = useState("");
 
   useEffect(() => {
     const choice = (arr: Array<string>) => {
@@ -33,53 +16,48 @@ const ExampleShowcase = () => {
       return arr[idx];
     };
 
-    const exampleTextLoose = exampleText as any;
+    const exampleTextLoose = examples as any;
     const selectedExample = exampleTextLoose[selected];
-    const texts = selectedExample["samples"][order];
+    const texts = selectedExample.samples[order];
     const text = choice(texts);
     setOutput(text);
+    setSelectedSource(selectedExample.source);
   }, [selected, order]);
 
+  const onActive = (idx: any) => {
+    const exampleName = Object.keys(examples)[idx];
+    setSelected(exampleName);
+  };
+
   return (
-    <Box round background="light-2" pad="medium" gap="medium">
-      <Box direction="row" gap="medium">
-        <Box width="small" direction="column" gap="small" justify="between">
-          <ExampleShowcaseSelect
-            name="Car Reviews"
-            value={selected}
-            onClick={setSelected}
-          />
-          <ExampleShowcaseSelect
-            name="Hotel Reviews"
-            value={selected}
-            onClick={setSelected}
-          />
-          <ExampleShowcaseSelect
-            name="Horoscopes"
-            value={selected}
-            onClick={setSelected}
-          />
-          <ExampleShowcaseSelect
-            name="Npc"
-            value={selected}
-            onClick={setSelected}
-          />
-          <ExampleShowcaseSelect
-            name="Wiki Blockchain"
-            value={selected}
-            onClick={setSelected}
-          />
+    <Box direction="column" gap="large">
+      <Tabs onActive={onActive}>
+        {Object.keys(examples).map((selectedExampleName) => {
+          return <Tab key={selectedExampleName} title={selectedExampleName} />;
+        })}
+      </Tabs>
+
+      <Box fill="horizontal" direction="column" gap="small">
+        <Box
+          round
+          fill
+          background="window"
+          pad="medium"
+          className="showcase-output"
+        >
+          <Text>{output}</Text>
         </Box>
 
-        <Box fill="horizontal" direction="column" gap="medium">
-          <Box
-            fill
-            background="light-4"
-            pad="medium"
-            className="showcase-output"
-          >
-            <Text>{output}</Text>
-          </Box>
+        <Box>
+          <Text size="xsmall" textAlign="end">
+            Based on dataset
+            <Anchor
+              href="https://github.com/lausek/remarkov/releases/tag/v0.2.3"
+              target="_blank"
+            >
+              {selectedSource}
+            </Anchor>
+          </Text>
         </Box>
       </Box>
 
