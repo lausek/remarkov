@@ -20,6 +20,7 @@ from remarkov.tokenizer import (
 )
 
 DEFAULT_GENERATE_WORD_AMOUNT = 32
+DEFAULT_GENERATE_SENTENCE_AMOUNT = 3
 
 
 class Transitions(dict):
@@ -106,7 +107,7 @@ class Model:
 
         self.transitions = Transitions()
 
-        assert 1 <= self.order, "Order must be greater than 1."
+        assert 1 <= self.order, "Order must be at least 1."
 
     @staticmethod
     def from_json(raw: str) -> "Model":
@@ -238,6 +239,31 @@ class Model:
         """
 
         return GenerationResult(self._generate_stream_with_limit(word_amount))
+
+    def generate_sentences(
+        self, sentence_amount: int = DEFAULT_GENERATE_SENTENCE_AMOUNT
+    ) -> GenerationResult:
+        """
+        Generate a random text with `sentence_amount` sentences. Be careful when using this function
+        as it will result in an endless loop if no `remarkov.tokenizer.PUNCT_TERMINATION` character was added.
+        """
+        assert 0 < sentence_amount, "Sentence amount must be at least 1."
+
+        def sentence_generator():
+            stream = self._generate_stream()
+
+            for _ in range(sentence_amount):
+                # TODO: we should make sure that we are not starting on a punctuation char,
+                #       but this is fine for now.
+                token = next(stream)
+
+                while token not in PUNCT_TERMINATION:
+                    yield token
+                    token = next(stream)
+
+                yield token
+
+        return GenerationResult(sentence_generator())
 
     def to_json(self, version=1, compress: bool = False) -> str:
         """
