@@ -6,7 +6,7 @@
 You can use it to customize all sorts of writing from birthday messages, horoscopes, Wikipedia articles, or the utterances of your game's NPCs.
 Everything works without an omnipotent *"AI"* - it is dead-simple code and therefore fast.
 
-Feel free to contribute!
+Check out the [examples](https://lausek.eu/remarkov#examples) and feel free to contribute!
 
 <br clear="both" />
 
