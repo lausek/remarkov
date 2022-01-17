@@ -126,7 +126,7 @@ class Model:
         except StopIteration:
             raise TokenStreamExhausted()
 
-    def _get_random_start_state(self) -> Tuple[Tuple[Token], List[Token]]:
+    def _get_random_start_state(self) -> Tuple[State, List[Token]]:
         """
         This returns an immutable tuple state for transition selection as first value and
         a mutable variant as second value.
@@ -208,7 +208,7 @@ class Model:
         yield from state
 
         while True:
-            key: Tuple[Token] = tuple(state)
+            key: State = tuple(state)
 
             if key not in self.transitions:
                 key, state = self._get_random_start_state()
