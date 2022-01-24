@@ -41,10 +41,11 @@ def create_ngram_tokenizer(n: int) -> Callable[[str], TokenStream]:
     def ngram_tokenizer(text: str):
         for offset in range(0, len(text), n):
             ngram = text[offset : offset + n]
+            ngram_len_diff = n - len(ngram)
 
             # if the current ngram is too short, pad it with whitespace.
-            if len(ngram) < n:
-                ngram += " " * (n - len(ngram))
+            if 0 < ngram_len_diff:
+                ngram += " " * ngram_len_diff
 
             yield ngram
 
