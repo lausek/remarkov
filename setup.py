@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="remarkov",
-    version="0.2.5",
+    version="0.2.6",
     description="Generate text from text using Markov chains.",
     author="lausek",
     author_email="input@lausek.eu",
@@ -22,4 +22,7 @@ setup(
         "markov",
         "cli",
     ],
+    package_data={
+        "remarkov": ["py.typed"],
+    },
 )
