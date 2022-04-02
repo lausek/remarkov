@@ -28,20 +28,20 @@ def create_model(
     )
 
 
-def load_model(path: str) -> "Model":
+def load_model(path: str, version: int = 1) -> "Model":
     """
     Loads a serialized model.
     """
 
     with open(path, "r") as fin:
-        return parse_model(fin.read())
+        return parse_model(fin.read(), version=version)
 
 
-def parse_model(raw: str) -> "Model":
+def parse_model(raw: str, version: int = 1) -> "Model":
     """
     Loads a model from a JSON string.
     """
 
     from remarkov.model import Model
 
-    return Model().from_json(raw)
+    return Model().from_json(raw, version=version)

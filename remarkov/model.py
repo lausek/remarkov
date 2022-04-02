@@ -110,7 +110,7 @@ class Model:
         assert 1 <= self.order, "Order must be at least 1."
 
     @staticmethod
-    def from_json(raw: str) -> "Model":
+    def from_json(raw: str, version: int = 1) -> "Model":
         """
         Deserialize a model from a JSON string. You should prefer `remarkov.parse_model` over this function.
         """

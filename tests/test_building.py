@@ -51,30 +51,3 @@ def test_initial_state_is_start_state():
     model.add_text("This works now.")
 
     assert 1 == len(model.transitions.start_states)
-
-
-def test_json_serialization():
-    import json
-
-    model = create_model()
-    model.add_text(
-        "This is a sample and this is another. Be sure to have multiple. Sentences."
-    )
-
-    assert json.loads(model.to_json())
-
-
-def test_json_persistance():
-    model = create_model(order=2)
-    model.add_text(
-        "This is a sample and this is another. Be sure to have multiple. Sentences."
-    )
-
-    source_model = model.to_json()
-    loaded_model = parse_model(source_model)
-
-    print(model.transitions.start_states)
-
-    assert 2 == loaded_model.order
-    assert loaded_model.transitions
-    assert 2 == len(loaded_model.transitions.start_states)
