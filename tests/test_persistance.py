@@ -86,3 +86,14 @@ def test_load_version_one_from_file():
         loaded_model = load_model(tmp.name, version=2)
         assert model.transitions == loaded_model.transitions
         assert model.transitions.start_states == loaded_model.transitions.start_states
+
+
+def test_v2_is_smaller():
+    model = create_model()
+    model.add_text("a a a a b b b")
+
+    v2_model = model.to_json(version=2)
+    v1_model = model.to_json(version=1)
+
+    # v2 is at least 10% smaller
+    assert len(v2_model) < len(v1_model) * 0.9
