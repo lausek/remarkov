@@ -6,7 +6,7 @@ from remarkov.types import Token
 
 ORDER, TRANSITIONS, START_STATES = "order", "transitions", "start_states"
 DEFAULT_JSON_INDENT = 4
-DEFAULT_PERSISTANCE_VERSION = 1
+DEFAULT_PERSISTANCE_VERSION = 2
 
 
 class GenericEncoder(JSONEncoder):

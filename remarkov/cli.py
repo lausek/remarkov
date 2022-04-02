@@ -6,7 +6,7 @@ from typing import Optional, TextIO
 
 from remarkov.tokenizer import token_to_lowercase
 from remarkov.model import DEFAULT_GENERATE_WORD_AMOUNT, Model
-from remarkov import create_model, load_model, parse_model
+from remarkov import __version__, create_model, load_model, parse_model
 
 
 def create_build_parser(subcommands):
@@ -61,7 +61,9 @@ def create_generate_parser(subcommands):
 def create_parser():
     import argparse
 
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description=f"remarkov {__version__} - a tool for generating new text from existing samples"
+    )
 
     subcommands = parser.add_subparsers(title="commands", dest="cmd", required=True)
 

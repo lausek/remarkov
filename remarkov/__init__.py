@@ -2,6 +2,8 @@ from typing import Callable, Optional
 from remarkov.types import Tokenizer
 from remarkov.persistance import DEFAULT_PERSISTANCE_VERSION
 
+__version__ = "0.2.7"
+
 
 def create_model(
     order: int = 1,

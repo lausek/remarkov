@@ -1,9 +1,11 @@
 from pathlib import Path
 from setuptools import find_packages, setup
 
+import remarkov
+
 setup(
     name="remarkov",
-    version="0.2.6",
+    version=remarkov.__version__,
     description="Generate text from text using Markov chains.",
     author="lausek",
     author_email="input@lausek.eu",
