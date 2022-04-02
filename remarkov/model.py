@@ -11,7 +11,13 @@ import random
 from typing import Callable, Dict, Generator, List, Optional, Tuple
 
 from remarkov.error import NoTransitionsDefined, NoStartStateFound, TokenStreamExhausted
-from remarkov.persistance import V1Decoder, V1Encoder
+from remarkov.persistance import (
+    V1Decoder,
+    V1Encoder,
+    V2Decoder,
+    V2Encoder,
+    DEFAULT_PERSISTANCE_VERSION,
+)
 from remarkov.types import State, Token, Tokenizer, TokenStream
 from remarkov.tokenizer import (
     NO_WHITESPACE_AFTER,
@@ -110,12 +116,12 @@ class Model:
         assert 1 <= self.order, "Order must be at least 1."
 
     @staticmethod
-    def from_json(raw: str, version: int = 1) -> "Model":
+    def from_json(raw: str, version: int = DEFAULT_PERSISTANCE_VERSION) -> "Model":
         """
         Deserialize a model from a JSON string. You should prefer `remarkov.parse_model` over this function.
         """
-
-        return V1Decoder().decode(raw)
+        decoder = V2Decoder() if 2 == version else V1Decoder()
+        return decoder.decode(raw)
 
     def _create_initial_state(self, token_stream: TokenStream) -> List[Token]:
         try:
@@ -265,11 +271,17 @@ class Model:
 
         return GenerationResult(sentence_generator())
 
-    def to_json(self, version=1, compress: bool = False) -> str:
+    def to_json(
+        self, version: int = DEFAULT_PERSISTANCE_VERSION, compress: bool = False
+    ) -> str:
         """
         Serializes the model into a JSON string.
 
         `version` is currently not in use.
         """
-
-        return V1Encoder(compress=compress).encode(self)
+        encoder = (
+            V2Encoder(compress=compress)
+            if version == 2
+            else V1Encoder(compress=compress)
+        )
+        return encoder.encode(self)

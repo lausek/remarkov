@@ -1,6 +1,6 @@
 from typing import Callable, Optional
-from remarkov.model import Model
 from remarkov.types import Tokenizer
+from remarkov.persistance import DEFAULT_PERSISTANCE_VERSION
 
 
 def create_model(
@@ -28,7 +28,7 @@ def create_model(
     )
 
 
-def load_model(path: str, version: int = 1) -> "Model":
+def load_model(path: str, version: int = DEFAULT_PERSISTANCE_VERSION) -> "Model":
     """
     Loads a serialized model.
     """
@@ -37,7 +37,7 @@ def load_model(path: str, version: int = 1) -> "Model":
         return parse_model(fin.read(), version=version)
 
 
-def parse_model(raw: str, version: int = 1) -> "Model":
+def parse_model(raw: str, version: int = DEFAULT_PERSISTANCE_VERSION) -> "Model":
     """
     Loads a model from a JSON string.
     """

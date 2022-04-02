@@ -56,3 +56,33 @@ def test_default_json_persistance():
     assert 2 == loaded_model.order
     assert loaded_model.transitions
     assert 2 == len(loaded_model.transitions.start_states)
+
+
+def test_persist_version_two():
+    model = create_model()
+    model.add_text("a a a a")
+    loaded_model = json.loads(model.to_json(version=2))
+
+    assert 3 == loaded_model["transitions"][0]["tokens"]["a"]
+
+
+def test_load_version_two():
+    model = create_model()
+    model.add_text("a a a a")
+    loaded_model = parse_model(model.to_json(version=2), version=2)
+
+    assert model.transitions == loaded_model.transitions
+    assert model.transitions.start_states == loaded_model.transitions.start_states
+
+
+def test_load_version_one_from_file():
+    model = create_model()
+    model.add_text("a a a a")
+
+    with tempfile.NamedTemporaryFile(mode="w") as tmp:
+        tmp.write(model.to_json(version=2))
+        tmp.seek(0)
+
+        loaded_model = load_model(tmp.name, version=2)
+        assert model.transitions == loaded_model.transitions
+        assert model.transitions.start_states == loaded_model.transitions.start_states
